@@ -1,0 +1,48 @@
+.main { 
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  margin-top: 40px;
+  padding-bottom: 120px;
+  text-align: center;
+  background: #FFF;
+}
+
+.mainModal { 
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  margin-top: 20px;
+  padding-bottom: 120px;
+  text-align: center;
+  background: transparent;
+}
+
+.footerTabs{
+	margin-top: 40px;
+}
+
+.btn-delete{
+	align-items: center;
+	border: 0 transparent;
+	background: transparent;
+}
+
+.line-view{
+	width: 100%;
+	height: 1px;
+	background: black;
+}
+
+.item{
+	margin-top: 10px;
+	padding-left: 10px;
+	background: white;
+	border-radius: 10px;
+}
+
+
+.modal { 
+	width: 60% !important ;
+	height: 80% !important ;
+}

@@ -8,6 +8,7 @@ const tours_url = 'http://descubreperu.pe.hu/descubreperu/lista_turistas.php';
 const paquetes_url = 'http://descubreperu.pe.hu/descubreperu/lista_paquetes.php';
 
 const post_proveedor = BASE_URL + 'registrar_proveedor.php'
+const post_servicio = BASE_URL + 'registrar_servicio.php'
 
 
 new Vue({
@@ -28,6 +29,13 @@ new Vue({
     	prov_correo: '',
     	representante_legal: '',
     },
+    entityServ: {
+        serv_nombre: '',
+        serv_tipo: '',
+        serv_descripcion: '',
+        lugartur_id: '',
+        prov_id: '',
+    },
   },
   mounted: mounted,
   methods:{
@@ -46,7 +54,21 @@ new Vue({
 		}, response => {
 		    console.log(response);
 		});
-  	}
+  	},
+
+    addServicio: function (){
+        console.log(this.entityServ);
+        this.$http.post(post_servicio, this.entityServ).then(response => {
+            console.log(response.body);
+            this.entityServ.serv_nombre = ''
+            this.entityServ.serv_tipo = ''
+            this.entityServ.serv_descripcion = ''
+            this.entityServ.lugartur_id = ''
+            this.entityServ.prov_id = ''
+        }, response => {
+            console.log(response);
+        });
+    }
   },
 });
 
@@ -85,5 +107,9 @@ function mounted () {
 }
 
 function saveProveedor(data){
+
+}
+
+function saveServicio(data){
 
 }

@@ -80,32 +80,31 @@ new Vue({
 function mounted () {
 
     this.$http.get(prov_url).then( response => {
-    	this.proveedors = response.body;
+    	this.proveedors = response.body.data;
     }).catch( error => {
     	console.log(error);
     });
 
     this.$http.get(tours_url).then( response => {
-    	this.turistas = response.body;
+    	this.turistas = response.body.data;
     }).catch( error => {
     	console.log(error);
     });
 
     this.$http.get(services_url).then( response => {
-        this.services = response.body;
-        console.log(response.body);
+        this.services = response.body.data;
     }).catch( error => {
     	console.log(error);
     })
 
     this.$http.get(paquetes_url).then( response => {
-    	this.paquetes = response.body;
+    	this.paquetes = response.body.data;
     }).catch( error => {
     	console.log(error);
     })
 
     this.$http.get(places_url).then( response => {
-    	this.places = response.body;
+    	this.places = response.body.data;
     }).catch( error => {
     	console.log(error);
     })

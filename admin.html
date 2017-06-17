@@ -174,14 +174,14 @@
                         <div class="line-view"></div>
 
                         <div class="row item" v-for="proveedor in proveedors" >
-                            <label class="idprov col l1" >{{proveedor.prov_id}}</label>
-                            <label class="rz col l2" >{{proveedor.razon_social}}</label>
+                            <label class="idprov col l1" >{{proveedor.id}}</label>
+                            <label class="rz col l2" >{{proveedor.business_name}}</label>
                             <label class="ruc col l1" >{{proveedor.ruc}}</label>
-                            <label class="dir col l2" >{{proveedor.prov_direccion}}</label>
-                            <label class="city col l1" >{{proveedor.prov_ciudad}}</label>
-                            <label class="phone col l1" >{{proveedor.prov_pais}}</label>
-                            <label class="email col l1" >{{proveedor.prov_correo}}</label>
-                            <label class="rpt col l2" >{{proveedor.representante_legal}}</label> 
+                            <label class="dir col l2" >{{proveedor.address}}</label>
+                            <label class="city col l1" >{{proveedor.city}}</label>
+                            <label class="phone col l1" >{{proveedor.country}}</label>
+                            <label class="email col l1" >{{proveedor.email}}</label>
+                            <label class="rpt col l2" >{{proveedor.representative}}</label> 
                             <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">create</i></a> 
                             <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">delete</i></a> 
                 
@@ -271,10 +271,11 @@
                         <div class="line-view"></div>
 
                         <div class="row item" v-for="service in services">
-                            <label class="idser col l1" style="text-decoration: #000;">{{service.serv_id}}</label>
-                            <label class="name col l2" style="text-decoration: #000;">{{service.serv_nombre}}</label>
-                            <label class="tipo col l1" style="text-decoration: #000;">{{service.serv_tipo}}</label>
-                            <label class="des col l3" style="text-decoration: #000;">{{service.serv_descripcion}}</label>
+
+                            <label class="idser col l1" style="text-decoration: #000;">{{service.id}}</label>
+                            <label class="name col l2" style="text-decoration: #000;">{{service.title}}</label>
+                            <label class="tipo col l1" style="text-decoration: #000;">{{service.type_service_id}}</label>
+                            <label class="des col l3" style="text-decoration: #000;">{{service.description}}</label>
                             <label class="place col l2" style="text-decoration: #000;">Lugar Turístico</label>
                             <label class="prov col l2" style="text-decoration: #000;">Proveedor</label>
                             <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">create</i></a> 
@@ -384,13 +385,13 @@
                         <div class="line-view"></div>
 
                         <div class="row item" v-for="paquete in paquetes">
-                             <label class="idser col l1" style="text-decoration: #000;">{{paquete.paq_id}}</label>
-                            <label class="name col l1" style="text-decoration: #000;">{{paquete.paq_nombre}}</label>
-                            <label class="des col l2" style="text-decoration: #000;">{{paquete.paq_descripcion}}</label>
-                            <label class="place col l2" style="text-decoration: #000;">{{paquete.lugartur_id}}</label>
-                            <label class="dur col l1" style="text-decoration: #000;">{{paquete.paq_duracion}}</label>
-                            <label class="dateInit col l1" style="text-decoration: #000;">{{paquete.paq_fechainicio}}</label>
-                            <label class="dateEnd col l1" style="text-decoration: #000;">{{paquete.paq_fechatermino}}</label>
+                             <label class="idser col l1" style="text-decoration: #000;">{{paquete.id}}</label>
+                            <label class="name col l1" style="text-decoration: #000;">{{paquete.title}}</label>
+                            <label class="des col l2" style="text-decoration: #000;">{{paquete.description}}</label>
+                            <label class="place col l2" style="text-decoration: #000;">{{paquete.place_id}}</label>
+                            <label class="dur col l1" style="text-decoration: #000;">{{paquete.duration}}</label>
+                            <label class="dateInit col l1" style="text-decoration: #000;">{{paquete.init_date}}</label>
+                            <label class="dateEnd col l1" style="text-decoration: #000;">{{paquete.end_date}}</label>
                             <label class="provd col l1" style="text-decoration: #000;">{{paquete.prov_id}}</label>
                             <label class="detServ col l1" style="text-decoration: #000;">
                                 <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">attach_file</i></a> 
@@ -433,16 +434,16 @@
                             <div class="line-view"></div>
 
                             <div class="row item" v-for="turista in turistas">
-                                <label class="idtur col l1" style="text-decoration: #000;">{{turista.tur_id}}</label>
-                                <label class="name col l1" style="text-decoration: #000;">{{turista.tur_nombres}}</label>
-                                <label class="lastape col l2" style="text-decoration: #000;">{{turista.tur_apellidos}}</label>
-                                <label class="tdoc col l1" style="text-decoration: #000;">{{turista.tur_tipodoc}}</label>
-                                <label class="ndoc col l1" style="text-decoration: #000;">{{turista.tur_numerodoc}}</label>
-                                <label class="ciudad col l1" style="text-decoration: #000;">{{turista.tur_ciudad}}</label>
-                                <label class="pais col l1" style="text-decoration: #000;">{{turista.tur_pais}}</label>
-                                <label class="nac col l1" style="text-decoration: #000;">{{turista.tur_fnacimiento}}</label>
-                                <label class="correo col l1" style="text-decoration: #000;">{{turista.tur_correo}}</label>
-                                <label class="phon col l1" style="text-decoration: #000;">{{turista.tur_telefono}}</label>
+                                <label class="idtur col l1" style="text-decoration: #000;">{{turista.id}}</label>
+                                <label class="name col l1" style="text-decoration: #000;">{{turista.name}}</label>
+                                <label class="lastape col l2" style="text-decoration: #000;">{{turista.lastname}}</label>
+                                <label class="tdoc col l1" style="text-decoration: #000;">{{turista.document_type}}</label>
+                                <label class="ndoc col l1" style="text-decoration: #000;">{{turista.document_number}}</label>
+                                <label class="ciudad col l1" style="text-decoration: #000;">{{turista.city}}</label>
+                                <label class="pais col l1" style="text-decoration: #000;">{{turista.country}}</label>
+                                <label class="nac col l1" style="text-decoration: #000;">{{turista.birth_date}}</label>
+                                <label class="correo col l1" style="text-decoration: #000;">{{turista.email}}</label>
+                                <label class="phon col l1" style="text-decoration: #000;">{{turista.phone}}</label>
                                 <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">delete</i></a> 
                     
                             </div>

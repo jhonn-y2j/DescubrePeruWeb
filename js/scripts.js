@@ -1,15 +1,15 @@
 Vue.use(VueResource);
 
-const BASE_URL = 'http://descubreperu.pe.hu/descubre-peru'
+const BASE_URL = 'http://descubreperu.pe.hu/descubre-peru/'
 const prov_url = 'http://descubreperu.pe.hu/descubre-peru/list_suppliers.php';
 const places_url = 'http://descubreperu.pe.hu/descubre-peru/list_places.php';
 const services_url = 'http://descubreperu.pe.hu/descubre-peru/list_services.php';
 const tours_url = 'http://descubreperu.pe.hu/descubre-peru/list_tourist.php';
 const paquetes_url = 'http://descubreperu.pe.hu/descubre-peru/list_package.php';
 
-const post_proveedor = BASE_URL + 'registrar_proveedor.php'
-const post_servicio = BASE_URL + 'registrar_servicio.php'
-
+const post_proveedor = BASE_URL + 'register_supplier.php'
+const post_servicio = BASE_URL + 'register_services.php'
+const post_paquete = BASE_URL + 'register_package.php'
 
 new Vue({
   el: '#app',
@@ -41,6 +41,16 @@ new Vue({
         message:'',
         help:'',
     },
+    entityPack: {
+        title: '',
+        description: '',
+        init_date:'',
+        end_date: '',
+        place_id: '',
+        active:'',
+        cost:'',
+        promo_id:'',
+    },
   },
   mounted: mounted,
   methods:{
@@ -70,6 +80,22 @@ new Vue({
             this.entityServ.description = ''
             this.entityServ.place_id = ''
             this.entityServ.supplier_id = ''
+        }, response => {
+            console.log(response);
+        });
+    },
+
+    addPaquete: function (){
+        console.log(this.entityPack);
+        this.$http.post(post_paquete, this.entityPack).then(response => {
+            console.log(response.body);
+            this.entityPack.title = ''
+            this.entityPack.description = ''
+            this.entityPack.init_date = ''
+            this.entityPack.end_date = ''
+            this.entityPack.place_id = ''
+            this.entityPack.cost = ''
+            this.entityPack.promo_id = ''
         }, response => {
             console.log(response);
         });
@@ -116,5 +142,9 @@ function saveProveedor(data){
 }
 
 function saveServicio(data){
+
+}
+
+function savePaquete(data){
 
 }

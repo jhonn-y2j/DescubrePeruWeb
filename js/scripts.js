@@ -9,6 +9,7 @@ const paquetes_url = 'http://descubreperu.pe.hu/descubre-peru/list_package.php';
 
 const post_proveedor = BASE_URL + 'registrar_proveedor.php'
 const post_servicio = BASE_URL + 'registrar_servicio.php'
+const post_lugar = BASE_URL + 'register_place.php'
 
 
 new Vue({
@@ -40,6 +41,18 @@ new Vue({
         active:'',
         message:'',
         help:'',
+    },
+    entityPlace: {
+        id:'',
+        name: '',
+        description: '',
+        coordinates:'',
+        region: '',
+        url_images: '',
+        url_videos: '',
+        available:'',
+        description_warning:'',
+        help_warning:'',
     },
   },
   mounted: mounted,
@@ -73,8 +86,30 @@ new Vue({
         }, response => {
             console.log(response);
         });
+    },
+
+
+    addLugar: function (){
+        console.log(this.entityPlace);
+        this.$http.post(post_lugar, this.entityPlace).then(response => {
+            console.log(response.body);
+            this.entityPlace.name = ''
+            this.entityPlace.description = ''
+            this.entityPlace.coordinates = ''
+            this.entityPlace.region = ''
+            this.entityPlace.url_images = ''
+            this.entityPlace.url_videos = ''
+            this.entityPlace.available = ''
+            this.entityPlace.description_warning = ''
+            this.entityPlace.help_warning = ''
+        }, response => {
+            console.log(response);
+        });
     }
+  
   },
+
+
 });
 
 function mounted () {
@@ -114,6 +149,11 @@ function mounted () {
 function saveProveedor(data){
 
 }
+
+function saveServicio(data){
+
+}
+
 
 function saveServicio(data){
 

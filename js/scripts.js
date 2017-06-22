@@ -16,6 +16,11 @@ const post_paquete = BASE_URL + '/register_package.php';
 const post_lugar = BASE_URL + '/register_place.php';
 
 
+const actualizar_proveedor = BASE_URL + '/update_supplier.php';
+const actualizar_servicio = BASE_URL + '/update_services.php';
+const actualizar_paquete = BASE_URL + '/update_package.php';
+const actualizar_lugar = BASE_URL + '/update_place.php';
+
 new Vue({
   el: '#app',
   data: {
@@ -128,13 +133,27 @@ new Vue({
         console.log(this.entityPack);
         this.$http.post(post_paquete, this.entityPack).then(response => {
             console.log(response.body);
-            this.entityPack.title = ''
-            this.entityPack.description = ''
-            this.entityPack.init_date = ''
-            this.entityPack.end_date = ''
-            this.entityPack.place_id = ''
-            this.entityPack.cost = ''
-            this.entityPack.promo_id = ''
+            this.entityPack.title = '';
+            this.entityPack.description = '';
+            this.entityPack.init_date = '';
+            this.entityPack.end_date = '';
+            this.entityPack.place_id = '';
+            this.entityPack.cost = '';
+            this.entityPack.promo_id = '';
+        }, response => {
+            console.log(response);
+        });
+    },
+    
+    updateServicio: function (){
+        console.log(this.entityServ);
+        this.$http.post(actualizar_servicio, this.entityServ).then(response => {
+            console.log(response.body);
+            this.entityServ.title = '';
+            this.entityServ.type_service_id = '';
+            this.entityServ.description = '';
+            this.entityServ.place_id = '';
+            this.entityServ.supplier_id = '';
         }, response => {
             console.log(response);
         });

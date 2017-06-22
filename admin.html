@@ -91,7 +91,11 @@
                                     </div>
                                     <div class="input-field col l4">
                                       <input id="correo" type="email" class="validate" v-model="entityProv.email">
+<<<<<<< HEAD
                                       <label for="correo" data-error="Error" data-success="Éxito">Correo Electrónico</label>
+=======
+                                      <label for="correo" data-error="wrong" data-success="right">Correo Electrónico</label>
+>>>>>>> 3ac699b0afe7f5915e1df0509087b1bcdb1f6be1
                                     </div>
                                     <div class="input-field col l3">
                                       <input id="rpte" type="text" class="validate" v-model="entityProv.representative">
@@ -305,14 +309,14 @@
                                     <div class="col l1"></div>
                                     <div class="input-field col l7">
                                       <i class="material-icons prefix">account_circle</i>
-                                      <input id="nombre" type="text" class="validate">
+                                      <input id="nombre" type="text" class="validate" v-model="entityPack.title">
                                       <label for="nombre">Nombre</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l10">
-                                      <input id="description" type="text" class="validate">
+                                      <input id="description" type="text" class="validate" v-model="entityPack.description">
                                       <label for="description">Descripción</label>
                                     </div>
                                     <div class="col l1"></div>
@@ -321,11 +325,11 @@
                                     <div class="col l1"></div>
                                     <div class="input-field col l5">
                                       <i class="material-icons prefix">account_circle</i>
-                                      <input id="duration" type="text" class="validate">
-                                      <label for="duration">Duración</label>
+                                      <input id="duration" type="text" class="validate" v-model="entityPack.cost">
+                                      <label for="duration">Costo</label>
                                     </div>
                                     <div class="input-field col l5">
-                                        <select>
+                                        <select v-model="entityPack.place_id">
                                           <option value="" disabled selected>Lugar Turístico</option>
                                           <option value="1">Option 1</option>
                                           <option value="2">Option 2</option>
@@ -337,8 +341,8 @@
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l5">
-                                        <select>
-                                          <option value="" disabled selected>Proveedor</option>
+                                        <select v-model="entityPack.promo_id">
+                                          <option value="" disabled selected>Promocion</option>
                                           <option value="1">Option 1</option>
                                           <option value="2">Option 2</option>
                                           <option value="3">Option 3</option>
@@ -350,11 +354,11 @@
                                     <div class="col l1"></div>
                                     <div class="col l5">
                                         <label>Fecha de Inicio</label>
-                                         <input type="date" class="datepicker">
+                                         <input type="date" class="datepicker" v-model="entityPack.init_date">
                                     </div>
                                     <div class="col l5">
                                         <label>Fecha de Final</label>
-                                        <input type="date" class="datepicker">
+                                        <input type="date" class="datepicker" v-model="entityPack.end_date">
                                     </div>
                                 </div>
                               </form>
@@ -362,7 +366,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Guardar</a>
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addPaquete" >Guardar</a>
                             </div>
                         </div>
                     </section>
@@ -374,11 +378,10 @@
                             <label class="name col l1" style="text-decoration: #000;">Nombre</label>
                             <label class="des col l2" style="text-decoration: #000;">Descripción</label>
                             <label class="place col l2" style="text-decoration: #000;">Lugar Turístico</label>
-                            <label class="dur col l1" style="text-decoration: #000;">Duración</label>
+                            <label class="dur col l1" style="text-decoration: #000;">Costo</label>
                             <label class="dateInit col l1" style="text-decoration: #000;">Inicio</label>
                             <label class="dateEnd col l1" style="text-decoration: #000;">Final</label>
                             <label class="provd col l1" style="text-decoration: #000;">Proveedor</label>
-                            <label class="detServ col l1" style="text-decoration: #000;">Servicios</label>
                         </div>
 
                         <div class="line-view"></div>
@@ -388,7 +391,7 @@
                             <label class="name col l1" style="text-decoration: #000;">{{paquete.title}}</label>
                             <label class="des col l2" style="text-decoration: #000;">{{paquete.description}}</label>
                             <label class="place col l2" style="text-decoration: #000;">{{paquete.place_id}}</label>
-                            <label class="dur col l1" style="text-decoration: #000;">{{paquete.duration}}</label>
+                            <label class="dur col l1" style="text-decoration: #000;">{{paquete.cost}}</label>
                             <label class="dateInit col l1" style="text-decoration: #000;">{{paquete.init_date}}</label>
                             <label class="dateEnd col l1" style="text-decoration: #000;">{{paquete.end_date}}</label>
                             <label class="provd col l1" style="text-decoration: #000;">{{paquete.prov_id}}</label>

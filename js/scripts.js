@@ -1,15 +1,15 @@
 Vue.use(VueResource);
 
-const BASE_URL = 'http://descubreperu.pe.hu/descubre-peru'
+const BASE_URL = 'http://descubreperu.pe.hu/descubre-peru';
 const prov_url = 'http://descubreperu.pe.hu/descubre-peru/list_suppliers.php';
 const places_url = 'http://descubreperu.pe.hu/descubre-peru/list_places.php';
 const services_url = 'http://descubreperu.pe.hu/descubre-peru/list_services.php';
 const tours_url = 'http://descubreperu.pe.hu/descubre-peru/list_tourist.php';
 const paquetes_url = 'http://descubreperu.pe.hu/descubre-peru/list_package.php';
 
-const post_proveedor = BASE_URL + 'registrar_proveedor.php'
-const post_servicio = BASE_URL + 'registrar_servicio.php'
-const post_lugar = BASE_URL + 'register_place.php'
+const post_proveedor = BASE_URL + 'registrar_proveedor.php';
+const post_servicio = BASE_URL + 'registrar_servicio.php';
+const post_lugar = BASE_URL + 'register_place.php';
 
 
 new Vue({
@@ -28,7 +28,7 @@ new Vue({
     	country: '',
     	phone: '',
     	email: '',
-    	representative: '',
+    	representative: ''
     },
     entityServ: {
         id:'',
@@ -40,7 +40,7 @@ new Vue({
         supplier_id: '',
         active:'',
         message:'',
-        help:'',
+        help:''
     },
     entityPlace: {
         id:'',
@@ -52,8 +52,8 @@ new Vue({
         url_videos: '',
         available:'',
         description_warning:'',
-        help_warning:'',
-    },
+        help_warning:''
+    }
   },
   mounted: mounted,
   methods:{
@@ -61,14 +61,14 @@ new Vue({
   		console.log(this.entityProv);
   		this.$http.post(post_proveedor, this.entityProv).then(response => {
     		console.log(response.body);
-    		this.entityProv.business_name = ''
-    		this.entityProv.ruc = ''
-    		this.entityProv.address = ''
-    		this.entityProv.city = ''
-    		this.entityProv.phone = ''
-    		this.entityProv.country = ''
-    		this.entityProv.representative = ''
-    		this.entityProv.email = ''
+    		this.entityProv.business_name = '';
+    		this.entityProv.ruc = '';
+    		this.entityProv.address = '';
+    		this.entityProv.city = '';
+    		this.entityProv.phone = '';
+    		this.entityProv.country = '';
+    		this.entityProv.representative = '';
+    		this.entityProv.email = '';
 		}, response => {
 		    console.log(response);
 		});
@@ -78,11 +78,11 @@ new Vue({
         console.log(this.entityServ);
         this.$http.post(post_servicio, this.entityServ).then(response => {
             console.log(response.body);
-            this.entityServ.title = ''
-            this.entityServ.type_service_id = ''
-            this.entityServ.description = ''
-            this.entityServ.place_id = ''
-            this.entityServ.supplier_id = ''
+            this.entityServ.title = '';
+            this.entityServ.type_service_id = '';
+            this.entityServ.description = '';
+            this.entityServ.place_id = '';
+            this.entityServ.supplier_id = '';
         }, response => {
             console.log(response);
         });
@@ -93,21 +93,21 @@ new Vue({
         console.log(this.entityPlace);
         this.$http.post(post_lugar, this.entityPlace).then(response => {
             console.log(response.body);
-            this.entityPlace.name = ''
-            this.entityPlace.description = ''
-            this.entityPlace.coordinates = ''
-            this.entityPlace.region = ''
-            this.entityPlace.url_images = ''
-            this.entityPlace.url_videos = ''
-            this.entityPlace.available = ''
-            this.entityPlace.description_warning = ''
-            this.entityPlace.help_warning = ''
+            this.entityPlace.name = '';
+            this.entityPlace.description = '';
+            this.entityPlace.coordinates = '';
+            this.entityPlace.region = '';
+            this.entityPlace.url_images = '';
+            this.entityPlace.url_videos = '';
+            this.entityPlace.available = '';
+            this.entityPlace.description_warning = '';
+            this.entityPlace.help_warning = '';
         }, response => {
             console.log(response);
         });
     }
   
-  },
+  }
 
 
 });
@@ -130,19 +130,19 @@ function mounted () {
         this.services = response.body.data;
     }).catch( error => {
     	console.log(error);
-    })
+    });
 
     this.$http.get(paquetes_url).then( response => {
     	this.paquetes = response.body.data;
     }).catch( error => {
     	console.log(error);
-    })
+    });
 
     this.$http.get(places_url).then( response => {
     	this.places = response.body.data;
     }).catch( error => {
     	console.log(error);
-    })
+    });
 
 }
 

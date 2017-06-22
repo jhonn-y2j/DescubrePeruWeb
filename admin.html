@@ -58,7 +58,7 @@
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l5">
-                                      <input id="rz_social" type="text" class="validate" v-model="entityProv.razon_social">
+                                      <input id="rz_social" type="text" class="validate" v-model="entityProv.business_name">
                                       <label for="rz_social">Razón Social</label>
                                     </div>
                                     <div class="input-field col l5">
@@ -70,15 +70,15 @@
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l4">
-                                      <input id="direccion" type="text" class="validate" v-model="entityProv.prov_direccion">
+                                      <input id="direccion" type="text" class="validate" v-model="entityProv.address">
                                       <label for="direccion">Dirección</label>
                                     </div>
                                     <div class="input-field col l3">
-                                      <input id="ciudad" type="text" class="validate" v-model="entityProv.prov_ciudad">
+                                      <input id="ciudad" type="text" class="validate" v-model="entityProv.city">
                                       <label for="ciudad">Ciudad</label>
                                     </div>
                                     <div class="input-field col l3">
-                                      <input id="pais" type="text" class="validate" v-model="entityProv.prov_pais">
+                                      <input id="pais" type="text" class="validate" v-model="entityProv.country">
                                       <label for="pais">País</label>
                                     </div>
                                     <div class="col l1"></div>
@@ -86,25 +86,25 @@
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l3">
-                                      <input id="phone" type="text" class="validate" v-model="entityProv.prov_telefono">
+                                      <input id="phone" type="text" class="validate" v-model="entityProv.phone">
                                       <label for="phone">Teléfono</label>
                                     </div>
                                     <div class="input-field col l4">
-                                      <input id="correo" type="email" class="validate" v-model="entityProv.prov_correo">
-                                      <label for="correo" data-error="wrong" data-success="right">Correo Electrónico</label>
+                                      <input id="correo" type="email" class="validate" v-model="entityProv.email">
+                                      <label for="correo" data-error="Error" data-success="Éxito">Correo Electrónico</label>
                                     </div>
                                     <div class="input-field col l3">
-                                      <input id="rpte" type="text" class="validate" v-model="entityProv.representante_legal">
+                                      <input id="rpte" type="text" class="validate" v-model="entityProv.representative">
                                       <label for="rpte">Representante</label>
                                     </div>
                                     <div class="col l1"></div>
                                 </div>
-                              </form>
+                              </form>          
                               
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addProveedor" >Guardar</a>
+                              <a  href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addProveedor">Guardar</a >
                             </div>
                         </div>
 

@@ -1,26 +1,20 @@
 Vue.use(VueResource);
 
-<<<<<<< HEAD
 const BASE_URL = 'http://descubreperu.pe.hu/descubre-peru';
-=======
-const BASE_URL = 'http://descubreperu.pe.hu/descubre-peru/'
->>>>>>> 3ac699b0afe7f5915e1df0509087b1bcdb1f6be1
+
 const prov_url = 'http://descubreperu.pe.hu/descubre-peru/list_suppliers.php';
 const places_url = 'http://descubreperu.pe.hu/descubre-peru/list_places.php';
 const services_url = 'http://descubreperu.pe.hu/descubre-peru/list_services.php';
 const tours_url = 'http://descubreperu.pe.hu/descubre-peru/list_tourist.php';
 const paquetes_url = 'http://descubreperu.pe.hu/descubre-peru/list_package.php';
 
-<<<<<<< HEAD
-const post_proveedor = BASE_URL + 'registrar_proveedor.php';
-const post_servicio = BASE_URL + 'registrar_servicio.php';
+
+
+const post_proveedor = BASE_URL + 'register_supplier.php';
+const post_servicio = BASE_URL + 'register_services.php';
+const post_paquete = BASE_URL + 'register_package.php';
 const post_lugar = BASE_URL + 'register_place.php';
 
-=======
-const post_proveedor = BASE_URL + 'register_supplier.php'
-const post_servicio = BASE_URL + 'register_services.php'
-const post_paquete = BASE_URL + 'register_package.php'
->>>>>>> 3ac699b0afe7f5915e1df0509087b1bcdb1f6be1
 
 new Vue({
   el: '#app',
@@ -52,7 +46,7 @@ new Vue({
         message:'',
         help:''
     },
-<<<<<<< HEAD
+
     entityPlace: {
         id:'',
         name: '',
@@ -64,9 +58,9 @@ new Vue({
         available:'',
         description_warning:'',
         help_warning:''
-    }
-=======
-    entityPack: {
+    },
+
+        entityPack: {
         title: '',
         description: '',
         init_date:'',
@@ -74,9 +68,9 @@ new Vue({
         place_id: '',
         active:'',
         cost:'',
-        promo_id:'',
-    },
->>>>>>> 3ac699b0afe7f5915e1df0509087b1bcdb1f6be1
+        promo_id:''
+    }
+
   },
   mounted: mounted,
   methods:{
@@ -193,13 +187,13 @@ function saveServicio(data){
 
 }
 
-<<<<<<< HEAD
+
 
 function saveServicio(data){
 
 }
-=======
+
 function savePaquete(data){
 
 }
->>>>>>> 3ac699b0afe7f5915e1df0509087b1bcdb1f6be1
+

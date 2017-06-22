@@ -10,10 +10,10 @@ const paquetes_url = 'http://descubreperu.pe.hu/descubre-peru/list_package.php';
 
 
 
-const post_proveedor = BASE_URL + 'register_supplier.php';
-const post_servicio = BASE_URL + 'register_services.php';
-const post_paquete = BASE_URL + 'register_package.php';
-const post_lugar = BASE_URL + 'register_place.php';
+const post_proveedor = BASE_URL + '/register_supplier.php';
+const post_servicio = BASE_URL + '/register_services.php';
+const post_paquete = BASE_URL + '/register_package.php';
+const post_lugar = BASE_URL + '/register_place.php';
 
 
 new Vue({

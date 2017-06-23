@@ -38,6 +38,7 @@
                 <li class="tab"><a href="#test3">Paquetes</a></li>
                 <li class="tab"><a href="#test4">Turistas</a></li>
                 <li class="tab"><a href="#test5">Lugares Turístico</a></li>
+                <li class="tab"><a href="#test6">Compras</a></li>
               </ul>
             </div>
           </nav>
@@ -547,6 +548,103 @@
               </div>
 
           </div>
+          
+          <!-- Compras -->
+          <div id="test6" class="col s12">
+              <div class="container">
+                <div class="row">
+                    <section class="footerTabs">
+                        <a class="waves-effect waves-light btn" href="#modal3"><i class="material-icons left">add_circle</i>Crear</a>
+
+                        <!-- Modal crear servicio -->
+
+                        <div id="modal3" class="modal">
+                            <div class="modal-content">
+                              <h5 style="text-align: center;">Registrar Compra</h5>
+                              <form class="col l12">
+                                <div class="row">
+                                    <div class="col l1"></div>
+                                    <div class="input-field col l5">
+                                      <i class="material-icons prefix">account_circle</i>
+                                      <input id="nombre" type="text" class="validate" v-model="entityCreditCard.name">
+                                      <label for="nombre">Nombre</label>
+                                    </div>
+                                    <div class="input-field col l5">
+                                      <input id="tipo" type="text" class="validate" v-model="entityCreditCard.number_card">
+                                      <label for="tipo">Número de Tarjeta</label>
+                                    </div>
+                                    <div class="col l1"></div>
+                                </div>	
+                                <div class="row">
+                                    <div class="col l1"></div>
+                                    <div class="input-field col l10">
+                                      <input id="description" type="text" class="validate" v-model="entityCreditCard.date_venc">
+                                      <label for="description">Fecha de Vencimiento De Tarjeta</label>
+                                    </div>
+                                    <div class="col l1"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col l1" ></div>
+                                    <div class="input-field col l5">
+                                        <select>
+                                          <option value=""  selected>Turista</option>
+                                          <option value="1">Option 1</option>
+                                          <option value="2">Option 2</option>
+                                          <option value="3">Option 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field col l5">
+                                        <select>
+                                          <option value=""  selected>Paquete</option>
+                                          <option value="1">Option 1</option>
+                                          <option value="2">Option 2</option>
+                                          <option value="3">Option 3</option>
+                                        </select>
+    
+                                      </div>
+                                    <div class="col l1"></div>
+                                </div>
+                              </form>
+                              
+                            </div>
+                            <div class="modal-footer">
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addCreditCard" >Guardar</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="row">
+                    <article class="main col-lg-12" >
+                        <div class="col-lg-12">
+                            <label class="idser col l1" style="text-decoration: #000;">ID</label>
+                            <label class="name col l2" style="text-decoration: #000;">Nombre</label>
+                            <label class="tipo col l1" style="text-decoration: #000;">Número de Tarjeta</label>
+                            <label class="des col l3" style="text-decoration: #000;">Fecha de Vencimiento de Tarjeta</label>
+                            <label class="place col l2" style="text-decoration: #000;">Turista</label>
+                            <label class="prov col l2" style="text-decoration: #000;">Paquete</label>
+                        </div>
+
+                        <div class="line-view"></div>
+
+                        <div class="row item" v-for="card in credit_card">
+
+                            <label class="idser col l1" style="text-decoration: #000;">{{card.id}}</label>
+                            <label class="name col l2" style="text-decoration: #000;">{{card.name}}</label>
+                            <label class="tipo col l1" style="text-decoration: #000;">{{card.number_card}}</label>
+                            <label class="des col l3" style="text-decoration: #000;">{{card.date_venc}}</label>
+                            <label class="place col l2" style="text-decoration: #000;">Lugar Turístico</label>
+                            <label class="prov col l2" style="text-decoration: #000;">Proveedor</label>
+                            <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">create</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">delete</i></a> 
+                
+                        </div>
+                    </article>
+                </div>
+              </div>
+
+          </div>
+              
 
         </div>
 

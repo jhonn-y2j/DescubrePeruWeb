@@ -7,13 +7,15 @@ const places_url = 'http://descubreperu.pe.hu/descubre-peru/list_places.php';
 const services_url = 'http://descubreperu.pe.hu/descubre-peru/list_services.php';
 const tours_url = 'http://descubreperu.pe.hu/descubre-peru/list_tourist.php';
 const paquetes_url = 'http://descubreperu.pe.hu/descubre-peru/list_package.php';
-
+const credit_card_url = 'http://descubreperu.pe.hu/descubre-peru/list_credit_card.php';
 
 
 const post_proveedor = BASE_URL + '/register_supplier.php';
 const post_servicio = BASE_URL + '/register_services.php';
 const post_paquete = BASE_URL + '/register_package.php';
 const post_lugar = BASE_URL + '/register_place.php';
+const post_credit_card = BASE_URL + '/register_credit_card.php';
+
 
 
 const actualizar_proveedor = BASE_URL + '/update_supplier.php';
@@ -29,6 +31,7 @@ new Vue({
     services: [],
     paquetes: [],
     places: [],
+    credit_card:[],
     entityProv: {
     	business_name: '',
     	ruc: '',
@@ -65,7 +68,7 @@ new Vue({
         help_warning:''
     },
 
-        entityPack: {
+    entityPack: {
         title: '',
         description: '',
         init_date:'',
@@ -74,7 +77,25 @@ new Vue({
         active:'',
         cost:'',
         promo_id:''
-    }
+    },
+    
+   entityCreditCard: {
+        date_venc: '',
+        currency_date: '',
+        ccv:'',
+        name: '',
+        email: '',
+        number_card:'',
+        amount:'',
+        currency_code:'',
+        token:'',
+        phone_number: '',
+        country_code: '',
+        address_city:'',
+        address:'',
+        package_id:'',
+        tourist_id:''
+    } 
 
   },
   mounted: mounted,
@@ -145,6 +166,30 @@ new Vue({
         });
     },
     
+    addCreditCard: function (){
+        console.log(this.entityCreditCard);
+        this.$http.post(post_credit_card, this.entityCreditCard).then(response => {
+            console.log(response.body);
+            this.entityCreditCard.date_venc = '';
+            this.entityCreditCard.currency_date = '';
+            this.entityCreditCard.ccv = '';
+            this.entityCreditCard.name= '';
+            this.entityCreditCard.email= '';
+            this.entityCreditCard.number_card='';
+            this.entityCreditCard.amount='';
+            this.entityCreditCard.currency_code='';
+            this.entityCreditCard.token='';
+            this.entityCreditCard.phone_number= '';
+            this.entityCreditCard.country_code= '';
+            this.entityCreditCard.address_city='';
+            this.entityCreditCard. address='';
+            this.entityCreditCard.package_id='';
+            this.entityCreditCard.tourist_id='';
+        }, response => {
+            console.log(response);
+        });
+    },
+    
     updateServicio: function (){
         console.log(this.entityServ);
         this.$http.post(actualizar_servicio, this.entityServ).then(response => {
@@ -195,6 +240,13 @@ function mounted () {
     }).catch( error => {
     	console.log(error);
     });
+    
+    this.$http.get(credit_card_url).then( response => {
+    	this.credit_card = response.body.data;
+    }).catch( error => {
+    	console.log(error);
+    });
+
 
 }
 

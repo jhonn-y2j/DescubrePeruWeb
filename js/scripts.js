@@ -94,7 +94,8 @@ new Vue({
         address_city:'',
         address:'',
         package_id:'',
-        tourist_id:''
+        tourist_id:'',
+        approved:''
     } 
 
   },
@@ -185,6 +186,7 @@ new Vue({
             this.entityCreditCard. address='';
             this.entityCreditCard.package_id='';
             this.entityCreditCard.tourist_id='';
+            this.entityCreditCard.approved='';
         }, response => {
             console.log(response);
         });

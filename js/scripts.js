@@ -194,7 +194,7 @@ new Vue({
     
     updateServicio: function (){
         console.log(this.entityServ);
-        this.$http.post(actualizar_servicio, this.entityServ).then(response => {
+        this.$http.put(actualizar_servicio, this.entityServ).then(response => {
             console.log(response.body);
             this.entityServ.title = '';
             this.entityServ.type_service_id = '';
@@ -204,6 +204,23 @@ new Vue({
         }, response => {
             console.log(response);
         });
+    },
+
+    RemoveServicio: function (servicio){
+        servicio.active='0';
+        console.log(this.entityServ);
+        this.$http.put(actualizar_servicio, this.entityServ).then(response => {
+            console.log(response.body);
+            this.entityServ.title = '';
+            this.entityServ.type_service_id = '';
+            this.entityServ.description = '';
+            this.entityServ.place_id = '';
+            this.entityServ.supplier_id = '';
+        }, response => {
+            console.log(response);
+        });
+
+        console.log(servicio);
     }
   
   }

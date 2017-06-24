@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Descubre Perú App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+     
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/registroProveedor.css">
+        
+    </head>
+    <body>
+       
+        <script src= "js/scrpit.js"></script>
+        <div class="container">
+            <div class= "card card-container">
+                <h2 style="text-align: center;">Registrar Proveedor</h2>
+                <form class="col l12">
+                <div class="form-signin">
+                    <div class="input-field col l5">
+                        <input id="rz_social" type="text" class="form-control validate" placeholder="Razón Social" v-model="entityProv.business_name">
+                    </div>    
+                    <div class="input-field col l5">
+                        <input id="representante" type="text" class="form-control validate" placeholder="Representante" v-model="entityServ.representative">
+                    </div>
+                    <div class="input-field col l5">
+                        <input id="ruc" type="text" class="form-control validate" placeholder="RUC" v-model="entityProv.ruc">
+                    </div>
+                    <div class="input-field col l5">
+                         <input id="direccion" type="text" class="form-control validate" placeholder="Dirección" v-model="entityProv.address">
+                    </div>
+                    <div class="form-signin">
+                       <input id="pais" type="text" class="form-control validate" placeholder="País" v-model="entityProv.country">
+                    </div>
+                    <div class="input-field col l5">
+                        <input id="ciudad" type="text" class="form-control validate" placeholder="Ciudad" v-model="entityProv.city">
+                    </div>
+                    <div class="input-field col l5">
+                        <input id="telefono" type="text" class="form-control validate"placeholder="Teléfono" v-model="entityProv.phone">
+                    </div>
+                    <div class="input-field col l5">
+                        <input id="correo" type="text" class="form-control validate" placeholder="Correo electrónico"  v-model="entityProv.email">
+                    </div>
+                </div>
+                </form>
+
+                <div>
+                    <button class="btn btn-lg btn-primary btn-signin" v-on:click="addProveedor">Enviar Solicitud de Registro</button>
+                    <button class="btn btn-lg btn-primary btn-signin">Cancelar</button>
+                </div>
+                              
+            </div>
+        </div>
+    </body>
+</html>

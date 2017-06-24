@@ -117,6 +117,24 @@ new Vue({
 		    console.log(response);
 		});
   	},
+        
+        updateProveedor: function (){
+  		console.log(this.entityProv);
+  		this.$http.post(actualizar_proveedor, this.entityProv).then(response => {
+    		console.log(response.body);
+    		this.entityProv.business_name = '';
+    		this.entityProv.ruc = '';
+    		this.entityProv.address = '';
+    		this.entityProv.city = '';
+    		this.entityProv.phone = '';
+    		this.entityProv.country = '';
+    		this.entityProv.representative = '';
+    		this.entityProv.email = '';
+		}, response => {
+		    console.log(response);
+		});
+  	},
+        
 
     addServicio: function (){
         console.log(this.entityServ);

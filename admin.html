@@ -302,21 +302,15 @@
                                 <div class="row">
                                     <div class="col l1" ></div>
                                     <div class="input-field col l5">
-                                        <select>
-                                          <option value=""  selected>Lugar Turístico</option>
-                                          <option value="1">Option 1</option>
-                                          <option value="2">Option 2</option>
-                                          <option value="3">Option 3</option>
+                                        <select v-model="entityServ.place_id">
+                                          <option v-for="place in places" v-bind:value="place.id">{{place.name}}</option>
                                         </select>
                                     </div>
                                     <div class="input-field col l5">
-                                        <select>
-                                          <option value=""  selected>Proveedor</option>
-                                          <option value="1">Option 1</option>
-                                          <option value="2">Option 2</option>
-                                          <option value="3">Option 3</option>
+                                        <select v-model="entityServ.supplier_id">
+                                          <option v-for="proveedor in proveedors" v-bind:value="proveedor.id">{{proveedor.bussines_name}}</option>
                                         </select>
-    
+
                                       </div>
                                     <div class="col l1"></div>
                                 </div>

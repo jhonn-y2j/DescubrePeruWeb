@@ -248,15 +248,9 @@
                             <label class="email col l1" >{{proveedor.email}}</label>
                             <label class="rpt col l2" >{{proveedor.representative}}</label> 
                             
-                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaProv"><i class="material-icons left">create</i></a>
-                                
-                            <!-- Modal actualizar proveedor 
-                            <a class="waves-effect waves-light btn" href="#modal2"><i class="material-icons left">person_add</i>Crear</a>-->
-                            
-                         
-                                
-                                
-                            <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">delete</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaProv" ><i class="material-icons left">create</i></a>
+         
+                            <a class="waves-effect waves-light  btn-delete" v-model="entityProv.id" v-on:click="deleteProveedor" ><i class="material-icons left">delete</i></a> 
                 
                         </div>
                     </article>

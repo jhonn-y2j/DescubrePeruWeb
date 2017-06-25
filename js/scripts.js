@@ -23,6 +23,9 @@ const actualizar_servicio = BASE_URL + '/update_services.php';
 const actualizar_paquete = BASE_URL + '/update_package.php';
 const actualizar_lugar = BASE_URL + '/update_place.php';
 
+const eliminar_proveedor = BASE_URL + '/delete_supplier.php';
+
+
 new Vue({
   el: '#app',
   data: {
@@ -135,7 +138,15 @@ new Vue({
 		});
   	},
         
-
+        deleteProveedor: function (){
+  		console.log(this.entityProv);
+  		this.$http.post(eliminar_proveedor, this.entityProv).then(response => {
+    		console.log(response.body);
+    		this.entityProv.id='';
+		}, response => {
+		    console.log(response);
+		});
+  	},
     addServicio: function (){
         console.log(this.entityServ);
         this.$http.post(post_servicio, this.entityServ).then(response => {

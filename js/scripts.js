@@ -16,14 +16,18 @@ const post_paquete = BASE_URL + '/register_package.php';
 const post_lugar = BASE_URL + '/register_place.php';
 const post_credit_card = BASE_URL + '/register_credit_card.php';
 
-
-
 const actualizar_proveedor = BASE_URL + '/update_supplier.php';
 const actualizar_servicio = BASE_URL + '/update_services.php';
 const actualizar_paquete = BASE_URL + '/update_package.php';
 const actualizar_lugar = BASE_URL + '/update_place.php';
+const actualizar_credit_card = BASE_URL + '/update_credit_card.php';
 
 const eliminar_proveedor = BASE_URL + '/delete_supplier.php';
+const eliminar_servicio= BASE_URL + '/delete_services.php';
+const eliminar_paquete = BASE_URL + '/delete_package.php';
+const eliminar_lugar = BASE_URL + '/delete_place.php';
+const eliminar_credit_card = BASE_URL + '/delete_credit_card.php';
+const eliminar_turista = BASE_URL + '/delete_tourist.php';
 
 
 new Vue({
@@ -138,15 +142,16 @@ new Vue({
 		});
   	},
         
-        deleteProveedor: function (){
-  		console.log(this.entityProv);
-  		this.$http.post(eliminar_proveedor, this.entityProv).then(response => {
+    deleteProveedor: function (proveedor){
+  		console.log(proveedor);
+  		this.$http.delete(eliminar_proveedor, {body : { id : proveedor}} ).then(response => {
     		console.log(response.body);
-    		this.entityProv.id='';
 		}, response => {
 		    console.log(response);
 		});
-  	},
+    },
+        
+        
     addServicio: function (){
         console.log(this.entityServ);
         this.$http.post(post_servicio, this.entityServ).then(response => {
@@ -161,7 +166,16 @@ new Vue({
         });
     },
 
-
+    deleteServicio: function (servicio){
+  		console.log(servicio);
+  		this.$http.delete(eliminar_servicio, {body : { id : servicio}} ).then(response => {
+    		console.log(response.body);
+		}, response => {
+		    console.log(response);
+		});
+    },
+    
+    
     addLugar: function (){
         console.log(this.entityPlace);
         this.$http.post(post_lugar, this.entityPlace).then(response => {
@@ -179,7 +193,16 @@ new Vue({
             console.log(response);
         });
     },
-
+    
+    deleteLugar: function (lugar){
+  		console.log(lugar);
+  		this.$http.delete(eliminar_lugar, {body : { id : lugar}} ).then(response => {
+    		console.log(response.body);
+		}, response => {
+		    console.log(response);
+		});
+    },
+    
     addPaquete: function (){
         console.log(this.entityPack);
         this.$http.post(post_paquete, this.entityPack).then(response => {
@@ -194,6 +217,15 @@ new Vue({
         }, response => {
             console.log(response);
         });
+    },
+    
+    deletePaquete: function (paquete){
+  		console.log(paquete);
+  		this.$http.delete(eliminar_paquete, {body : { id : paquete}} ).then(response => {
+    		console.log(response.body);
+		}, response => {
+		    console.log(response);
+		});
     },
     
     addCreditCard: function (){
@@ -221,35 +253,22 @@ new Vue({
         });
     },
     
-    updateServicio: function (){
-        console.log(this.entityServ);
-        this.$http.put(actualizar_servicio, this.entityServ).then(response => {
-            console.log(response.body);
-            this.entityServ.title = '';
-            this.entityServ.type_service_id = '';
-            this.entityServ.description = '';
-            this.entityServ.place_id = '';
-            this.entityServ.supplier_id = '';
-        }, response => {
-            console.log(response);
-        });
+    deleteCreditCard: function (credit_card){
+  		console.log(credit_card);
+  		this.$http.delete(eliminar_credit_card, {body : { id : credit_card}} ).then(response => {
+    		console.log(response.body);
+		}, response => {
+		    console.log(response);
+		});
     },
-
-    RemoveServicio: function (servicio){
-        servicio.active='0';
-        console.log(this.entityServ);
-        this.$http.put(actualizar_servicio, this.entityServ).then(response => {
-            console.log(response.body);
-            this.entityServ.title = '';
-            this.entityServ.type_service_id = '';
-            this.entityServ.description = '';
-            this.entityServ.place_id = '';
-            this.entityServ.supplier_id = '';
-        }, response => {
-            console.log(response);
-        });
-
-        console.log(servicio);
+    
+    deleteTurista: function (turista){
+  		console.log(turista);
+  		this.$http.delete(eliminar_turista, {body : { id : turista}} ).then(response => {
+    		console.log(response.body);
+		}, response => {
+		    console.log(response);
+		});
     }
   
   }

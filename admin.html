@@ -250,7 +250,7 @@
                             
                             <a class="waves-effect waves-light  btn-delete" href="#modalActuaProv" ><i class="material-icons left">create</i></a>
          
-                            <a class="waves-effect waves-light  btn-delete" v-model="entityProv.id" v-on:click="deleteProveedor" ><i class="material-icons left">delete</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" @click="deleteProveedor(proveedor.id)"><i class="material-icons left">delete</i></a> 
                 
                         </div>
                     </article>
@@ -395,7 +395,7 @@
                             <label class="place col l2" style="text-decoration: #000;">Lugar Turístico</label>
                             <label class="prov col l2" style="text-decoration: #000;">Proveedor</label>
                             <a class="waves-effect waves-light  btn-delete" href="#modalActuaServ" ><i class="material-icons left">create</i></a> 
-                            <a class="waves-effect waves-light  btn-delete" v-on:click="RemoveServicio(service)" ><i class="material-icons left">delete</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" @click="deleteServicio(service.id)" ><i class="material-icons left">delete</i></a> 
                 
                         </div>
                     </article>
@@ -580,7 +580,7 @@
                                 <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">attach_file</i></a> 
                             </label>
                             <a class="waves-effect waves-light  btn-delete" href="#modalActuaPack" ><i class="material-icons left">create</i></a> 
-                            <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">delete</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" @click="deletePaquete(paquete.id)"><i class="material-icons left">delete</i></a> 
                 
                         </div>
                     </article>
@@ -627,7 +627,7 @@
                                 <label class="nac col l1" style="text-decoration: #000;">{{turista.birth_date}}</label>
                                 <label class="correo col l1" style="text-decoration: #000;">{{turista.email}}</label>
                                 <label class="phon col l1" style="text-decoration: #000;">{{turista.phone}}</label>
-                                <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">delete</i></a> 
+                                <a class="waves-effect waves-light  btn-delete" @click="deleteTurista(turista.id)" ><i class="material-icons left">delete</i></a> 
                     
                             </div>
                         </article>
@@ -774,7 +774,7 @@
                                 <label><input type="checkbox"><span class="lever"></span></label>
                             </div>
                             <a class="waves-effect waves-light  btn-delete" href="#modalActuaLugar" ><i class="material-icons left">create</i></a> 
-                            <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">delete</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" @click="deleteLugar(place.id)" ><i class="material-icons left">delete</i></a> 
                 
                         </div>
                     </article>
@@ -921,7 +921,7 @@
                             <label class="place col l2" style="text-decoration: #000;">Lugar Turístico</label>
                             <label class="prov col l2" style="text-decoration: #000;">Proveedor</label>
                             <a class="waves-effect waves-light  btn-delete" href="#modalActuaCompra" ><i class="material-icons left">create</i></a> 
-                            <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">delete</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" @click="deleteCreditCard(card.id)" ><i class="material-icons left">delete</i></a> 
                 
                         </div>
                     </article>

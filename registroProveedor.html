@@ -52,10 +52,18 @@
                 </div>
                 </form>
 
-                <div>
-                    <button href="#!" class="btn btn-lg btn-primary btn-signin" v-on:click="addProveedor">Enviar Solicitud de Registro</button>
-                    <button class="btn btn-lg btn-primary btn-signin">Cancelar</button>
-                </div>
+                <section class="footerTabs">
+                    <div>
+                        <a class="app-boton btn btn-default" v-on:click="addProveedor" href="#modal2">Enviar Solicitud de Registro</a>
+                        <a class="app-boton btn btn-default" href="index.html">Cancelar</a>
+                    </div>
+                    <div id="modal2" class="modal">
+                        <div class="modal-content">
+                            <h5 style="text-align: center;">Se enviará un mensaje a la dirección de correo registrada para confirmar su solicitud de registro en las próximas 72 horas.</h5>
+                            <a class="app-boton btn btn-default" href="index.html">Aceptar</a>
+                        </div>
+                    </div>
+                </section>            
                               
             </div>
         </div>
@@ -64,7 +72,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.1/vue-resource.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
         <script src="js/scripts.js"></script>
         
         

@@ -125,9 +125,9 @@ new Vue({
 		});
   	},
         
-        updateProveedor: function (){
-  		console.log(this.entityProv);
-  		this.$http.post(actualizar_proveedor, this.entityProv).then(response => {
+        updateProveedor: function (proveedor){
+  		console.log(proveedor);
+  		this.$http.put(actualizar_proveedor, {body : { id : proveedor}}).then(response => {
     		console.log(response.body);
     		this.entityProv.business_name = '';
     		this.entityProv.ruc = '';

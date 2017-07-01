@@ -216,7 +216,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a  href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="updateProveedor">Actualizar</a >
+                              <a  href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" @click="updateProveedor(id)">Actualizar</a >
                             </div>
                         </div>   
           
@@ -351,7 +351,7 @@
                                         <select v-model="entityServ.place_id">
                                           <option value=""  selected>Lugar Turístico</option>
                                           <option v-for="place in places" v-bind:value="place.id">{{place.name}}</option>
-                                        </select>
+                                        </select>	
                                     </div>
                                     <div class="input-field col l5">
                                         <select v-model="entityServ.supplier_id">

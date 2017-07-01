@@ -112,14 +112,8 @@ new Vue({
   		console.log(this.entityProv);
   		this.$http.post(post_proveedor, this.entityProv).then(response => {
     		console.log(response.body);
-    		this.entityProv.business_name = '';
-    		this.entityProv.ruc = '';
-    		this.entityProv.address = '';
-    		this.entityProv.city = '';
-    		this.entityProv.phone = '';
-    		this.entityProv.country = '';
-    		this.entityProv.representative = '';
-    		this.entityProv.email = '';
+            this.proveedors.push(this.entityProv);
+    		this.entityProv = '';
 		}, response => {
 		    console.log(response);
 		});

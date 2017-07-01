@@ -262,10 +262,11 @@ new Vue({
 		});
     },
     
-    deleteTurista: function (turista){
+    deleteTurista: function (turista, obj){
   		console.log(turista);
   		this.$http.delete(eliminar_turista, {body : { id : turista}} ).then(response => {
     		console.log(response.body);
+            this.turistas.pop(obj);
 		}, response => {
 		    console.log(response);
 		});

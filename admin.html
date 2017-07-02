@@ -616,7 +616,7 @@
 
                             <div class="line-view"></div>
 
-                            <div class="row item" v-for="turista  in turistas"  >
+                            <div class="row item" v-for="(turista, index)  in turistas" >
                                 <label class="idtur col l1" style="text-decoration: #000;">{{turista.id}}</label>
                                 <label class="name col l1" style="text-decoration: #000;">{{turista.name}}</label>
                                 <label class="lastape col l2" style="text-decoration: #000;">{{turista.lastname}}</label>
@@ -627,7 +627,7 @@
                                 <label class="nac col l1" style="text-decoration: #000;">{{turista.birth_date}}</label>
                                 <label class="correo col l1" style="text-decoration: #000;">{{turista.email}}</label>
                                 <label class="phon col l1" style="text-decoration: #000;">{{turista.phone}}</label>
-                                <a class="waves-effect waves-light  btn-delete" @click="deleteTurista(turista.id, turista)" ><i class="material-icons left"  >delete</i></a> 
+                                <a class="waves-effect waves-light  btn-delete" @click="deleteTurista(turista.id, turista, index)" ><i class="material-icons left"  >delete</i></a> 
                     
                             </div>
                         </article>

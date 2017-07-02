@@ -250,11 +250,12 @@ new Vue({
 		});
     },
     
-    deleteTurista: function (turista, obj){
+    deleteTurista: function (turista, obj, index){
   		console.log(turista);
   		this.$http.delete(eliminar_turista, {body : { id : turista}} ).then(response => {
     		console.log(response.body);
-            this.turistas.pop(obj);
+            console.log(index);
+            this.turistas.splice(index, 1);
 		}, response => {
 		    console.log(response);
 		});

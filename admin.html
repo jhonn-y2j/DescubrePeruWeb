@@ -167,47 +167,47 @@
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l5">
-                                        <input id="rz_social" type="text" class="validate" v-model="entityProv.business_name">
-                                      <label for="rz_social">Razón Social</label>
+                                        <input id="rz_social" type="text" class="validate" v-model="selected.business_name" placeholder="Razón Social" >
+                                      <label for="rz_social"> Razón Social ({{selected.business_name}})</label>
                                     </div>
                                     <div class="input-field col l5">
-                                      <input id="ruc" type="text" class="validate" v-model="entityProv.ruc">
-                                      <label for="ruc">RUC</label>
+                                      <input id="ruc" type="text" class="validate" v-model="selected.ruc" placeholder="RUC">
+                                      <label for="ruc">RUC ({{selected.ruc}})</label>
                                     </div>
                                     <div class="col l1"></div>
                                 </div>
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l4">
-                                      <input id="direccion" type="text" class="validate" v-model="entityProv.address">
-                                      <label for="direccion">Dirección</label>
+                                      <input id="direccion" type="text" class="validate" v-model="selected.address" placeholder="Dirección">
+                                      <label for="direccion">Dirección ({{selected.address}})</label>
                                     </div>
                                     <div class="input-field col l3">
-                                      <input id="ciudad" type="text" class="validate" v-model="entityProv.city">
-                                      <label for="ciudad">Ciudad</label>
+                                      <input id="ciudad" type="text" class="validate" v-model="selected.city" placeholder="Ciudad">
+                                      <label class="active" for="ciudad">Ciudad ({{selected.city}})</label>
                                     </div>
                                     <div class="input-field col l3">
-                                      <input id="pais" type="text" class="validate" v-model="entityProv.country">
-                                      <label for="pais">País</label>
+                                      <input id="pais" type="text" class="validate" v-model="selected.country" placeholder="País">
+                                      <label for="pais">País ({{selected.country}})</label>
                                     </div>
                                     <div class="col l1"></div>
                                 </div>
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l3">
-                                      <input id="phone" type="text" class="validate" v-model="entityProv.phone">
-                                      <label for="phone">Teléfono</label>
+                                      <input id="phone" type="text" class="validate" v-model="selected.phone" placeholder="Teléfono">
+                                      <label for="phone">Teléfono ({{selected.phone}})</label>
                                     </div>
                                     <div class="input-field col l4">
-                                      <input id="correo" type="email" class="validate" v-model="entityProv.email">
-                                      <label for="correo" data-error="Error" data-success="Éxito">Correo Electrónico</label>
+                                      <input id="correo" type="email" class="validate" v-model="selected.email" placeholder="Correo Electrónico">
+                                      <label for="correo" data-error="Error" data-success="Éxito">Correo Electrónico ({{selected.email}})</label>
 
                                       <label for="correo" data-error="wrong" data-success="right">Correo Electrónico</label>
 
                                     </div>
                                     <div class="input-field col l3">
-                                      <input id="rpte" type="text" class="validate" v-model="entityProv.representative">
-                                      <label for="rpte">Representante</label>
+                                      <input id="rpte" type="text" class="validate" v-model="selected.representative" placeholder="Representante">
+                                      <label for="rpte">Representante ({{selected.representative}})</label>
                                     </div>
                                     <div class="col l1"></div>
                                 </div>
@@ -216,7 +216,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a  href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" @click="updateProveedor(id)">Actualizar</a >
+                              <a  href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" @click="updateProveedor(selected)">Actualizar</a >
                             </div>
                         </div>   
           
@@ -248,7 +248,7 @@
                             <label class="email col l1" >{{proveedor.email}}</label>
                             <label class="rpt col l2" >{{proveedor.representative}}</label> 
                             
-                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaProv" ><i class="material-icons left">create</i></a>
+                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaProv" @click="viewObj(proveedor)"><i class="material-icons left">create</i></a>
          
                             <a class="waves-effect waves-light  btn-delete" @click="deleteProveedor(proveedor.id)"><i class="material-icons left">delete</i></a> 
                 
@@ -950,7 +950,6 @@
                  endingTop: '10%', 
             });
             $('select').material_select();
-           
           });
       
       </script>

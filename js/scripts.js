@@ -39,7 +39,9 @@ new Vue({
     paquetes: [],
     places: [],
     credit_card:[],
+    selected: '',
     entityProv: {
+        id: '',
     	business_name: '',
     	ruc: '',
     	address: '',
@@ -118,19 +120,11 @@ new Vue({
 		    console.log(response);
 		});
   	},
+     updateProveedor: function (proveedor){
         
-        updateProveedor: function (proveedor){
-  		console.log(proveedor);
-  		this.$http.put(actualizar_proveedor, {body : { id : proveedor}}).then(response => {
-    		console.log(response.body);
-    		this.entityProv.business_name = '';
-    		this.entityProv.ruc = '';
-    		this.entityProv.address = '';
-    		this.entityProv.city = '';
-    		this.entityProv.phone = '';
-    		this.entityProv.country = '';
-    		this.entityProv.representative = '';
-    		this.entityProv.email = '';
+  		this.$http.put(actualizar_proveedor, this.selected).then(response => {
+    		console.log(this.selected);
+            this.selected = '';
 		}, response => {
 		    console.log(response);
 		});
@@ -264,6 +258,9 @@ new Vue({
 		}, response => {
 		    console.log(response);
 		});
+    },
+    viewObj: function (p){
+        this.selected = p;
     }
   
   }

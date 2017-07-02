@@ -136,10 +136,11 @@ new Vue({
 		});
   	},
         
-    deleteProveedor: function (proveedor){
+    deleteProveedor: function (proveedor,obj){
   		console.log(proveedor);
   		this.$http.delete(eliminar_proveedor, {body : { id : proveedor}} ).then(response => {
     		console.log(response.body);
+                this.proveedors.pop(obj);
 		}, response => {
 		    console.log(response);
 		});
@@ -150,6 +151,8 @@ new Vue({
         console.log(this.entityServ);
         this.$http.post(post_servicio, this.entityServ).then(response => {
             console.log(response.body);
+            this.services.push(this.entityServ);
+            this.entityServ = '';
             this.entityServ.title = '';
             this.entityServ.type_service_id = '';
             this.entityServ.description = '';
@@ -174,6 +177,8 @@ new Vue({
         console.log(this.entityPlace);
         this.$http.post(post_lugar, this.entityPlace).then(response => {
             console.log(response.body);
+            this.places.push(this.entityPlace);
+            this.entityPlace = '';
             this.entityPlace.name = '';
             this.entityPlace.description = '';
             this.entityPlace.coordinates = '';
@@ -201,6 +206,8 @@ new Vue({
         console.log(this.entityPack);
         this.$http.post(post_paquete, this.entityPack).then(response => {
             console.log(response.body);
+            this.paquetes.push(this.entityPack);
+    		this.entityPack = '';
             this.entityPack.title = '';
             this.entityPack.description = '';
             this.entityPack.init_date = '';
@@ -226,6 +233,8 @@ new Vue({
         console.log(this.entityCreditCard);
         this.$http.post(post_credit_card, this.entityCreditCard).then(response => {
             console.log(response.body);
+            this.credit_card.push(this.entityCreditCard);
+            this.entityCreditCard = '';
             this.entityCreditCard.date_venc = '';
             this.entityCreditCard.currency_date = '';
             this.entityCreditCard.ccv = '';
@@ -260,7 +269,7 @@ new Vue({
   		console.log(turista);
   		this.$http.delete(eliminar_turista, {body : { id : turista}} ).then(response => {
     		console.log(response.body);
-            this.turistas.pop(obj);
+                this.turistas.pop(obj);
 		}, response => {
 		    console.log(response);
 		});

@@ -39,7 +39,9 @@ new Vue({
     paquetes: [],
     places: [],
     credit_card:[],
+    selected: '',
     entityProv: {
+        id: '',
     	business_name: '',
     	ruc: '',
     	address: '',
@@ -118,19 +120,11 @@ new Vue({
 		    console.log(response);
 		});
   	},
+     updateProveedor: function (proveedor){
         
-        updateProveedor: function (proveedor){
-  		console.log(proveedor);
-  		this.$http.put(actualizar_proveedor, {body : { id : proveedor}}).then(response => {
-    		console.log(response.body);
-    		this.entityProv.business_name = '';
-    		this.entityProv.ruc = '';
-    		this.entityProv.address = '';
-    		this.entityProv.city = '';
-    		this.entityProv.phone = '';
-    		this.entityProv.country = '';
-    		this.entityProv.representative = '';
-    		this.entityProv.email = '';
+  		this.$http.put(actualizar_proveedor, this.selected).then(response => {
+    		console.log(this.selected);
+            this.selected = '';
 		}, response => {
 		    console.log(response);
 		});
@@ -265,14 +259,22 @@ new Vue({
 		});
     },
     
-    deleteTurista: function (turista, obj){
+    deleteTurista: function (turista, obj, index){
   		console.log(turista);
   		this.$http.delete(eliminar_turista, {body : { id : turista}} ).then(response => {
     		console.log(response.body);
+<<<<<<< HEAD
                 this.turistas.pop(obj);
+=======
+            console.log(index);
+            this.turistas.splice(index, 1);
+>>>>>>> 0ad3b8152f47319c65c5ca4e835ee1eb6a332a6b
 		}, response => {
 		    console.log(response);
 		});
+    },
+    viewObj: function (p){
+        this.selected = p;
     }
   
   }

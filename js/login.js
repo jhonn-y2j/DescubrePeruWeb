@@ -12,3 +12,11 @@ function handleSignIn(){
 	}
 	
 }
+
+
+function home(){
+
+		window.location = 'index.html';
+
+	
+}

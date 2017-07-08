@@ -3,12 +3,14 @@ Vue.use(VueResource);
 const BASE_URL = 'http://descubreperu.pe.hu/descubre-peru';
 
 const prov_url = 'http://descubreperu.pe.hu/descubre-peru/list_suppliers.php';
+const provEsperando_url = 'http://descubreperu.pe.hu/descubre-peru/list_suppliers_wait.php';
 const places_url = 'http://descubreperu.pe.hu/descubre-peru/list_places.php';
 const services_url = 'http://descubreperu.pe.hu/descubre-peru/list_services.php';
 const tours_url = 'http://descubreperu.pe.hu/descubre-peru/list_tourist.php';
 const paquetes_url = 'http://descubreperu.pe.hu/descubre-peru/list_package.php';
 const credit_card_url = 'http://descubreperu.pe.hu/descubre-peru/list_credit_card.php';
 
+const confirmar_proveedor = 'http://descubreperu.pe.hu/descubre-peru/confirm_supplier.php';
 
 const post_proveedor = BASE_URL + '/register_supplier.php';
 const post_servicio = BASE_URL + '/register_services.php';
@@ -34,6 +36,7 @@ new Vue({
   el: '#app',
   data: {
     proveedors: [],
+    proveedorsWaiting: [],
     turistas: [],
     services: [],
     paquetes: [],
@@ -139,6 +142,15 @@ new Vue({
 		    console.log(response);
 		});
     },
+    
+     confirmProveedor: function (proveedor){
+  		this.$http.put(confirmar_proveedor, this.selected).then(response => {
+    		console.log(this.selected);
+            this.selected = '';
+		}, response => {
+		    console.log(response);
+		});
+  	},
         
         
     addServicio: function (){
@@ -305,6 +317,10 @@ new Vue({
 		    console.log(response);
 		});
     },
+    
+    enviarMensaje: function (){
+    },
+    
     viewObj: function (p){
         this.selected = p;
     }
@@ -321,7 +337,13 @@ function mounted () {
     }).catch( error => {
     	console.log(error);
     });
-
+    
+    this.$http.get(provEsperando_url).then( response => {
+    	this.proveedorsWaiting = response.body.data;
+    }).catch( error => {
+    	console.log(error);
+    });
+    
     this.$http.get(tours_url).then( response => {
     	this.turistas = response.body.data;
     }).catch( error => {

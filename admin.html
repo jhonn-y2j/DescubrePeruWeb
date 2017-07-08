@@ -138,14 +138,15 @@
 
                                     <div class="line-view"></div>
 
-                                    <div class="row item"  >
-                                        <label class="idprov col l1" >ID</label>
-                                        <label class="rz col l3" >Razón Social</label>
-                                        <label class="ruc col l2" >RUC</label>
-                                        <label class="rpt col l3" >Representante</label> 
+                                    <div class="row item"  class="row item" v-for="proveedor in proveedorsWaiting"  >
+                                        <label class="idprov col l1" >{{proveedor.id}}</label>
+                                        <label class="rz col l3" >{{proveedor.business_name}}</label>
+                                        <label class="ruc col l2" >{{proveedor.ruc}}</label>
+                                        <label class="rpt col l3" >{{proveedor.representative}}</label>
+                                        
                                         <div class="switch">
                                             <label>
-                                              <input type="checkbox">
+                                              <input type="checkbox" >
                                               <span class="lever"></span>
                                             </label>
                                         </div>
@@ -155,7 +156,8 @@
                             </div>
                             </div>
                             <div class="modal-footer">
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat " @click="confirmProveedor(selected)" >Aceptar</a>
                             </div>
                         </div>
                         
@@ -246,7 +248,7 @@
                             <label class="city col l1" >{{proveedor.city}}</label>
                             <label class="phone col l1" >{{proveedor.country}}</label>
                             <label class="email col l1" >{{proveedor.email}}</label>
-                            <label class="rpt col l2" >{{proveedor.representative}}</label> 
+                            <label class="rpt col l2" >{{proveedor.representative}}</label>
                             
                             <a class="waves-effect waves-light  btn-delete" href="#modalActuaProv" @click="viewObj(proveedor)"><i class="material-icons left">create</i></a>
          
@@ -314,7 +316,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addServicio" >Guardar</a>
+                              <a href="mailto:francoccopa@gmail.com" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addServicio">Actualizar</a>
                             </div>
                         </div>
                         
@@ -546,7 +548,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="updatePaquete(selected)">Guardar</a>
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="updatePaquete(selected)">Actualizar</a>
                             </div>
                         </div>
                         
@@ -603,30 +605,30 @@
                         <article class="main col-lg-12" >
                             <div class="col-lg-12">
                                 <!--<label class="idtur col l1" style="text-decoration: #000;">ID</label>-->
-                                <label class="name col l1" style="text-decoration: #000;">Nombre y Apellidos</label>
+                                <label class="name col l2" style="text-decoration: #000;">Nombre y Apellidos</label>
                                 <!--<label class="lastape col l2" style="text-decoration: #000;">Apellidos</label>-->
                                 <!--<label class="tdoc col l1" style="text-decoration: #000;">Tipo de Doc.</label>-->
                                 <!--<label class="ndoc col l1" style="text-decoration: #000;">Nro Doc.</label>-->
                                 <!--<label class="ciudad col l1" style="text-decoration: #000;">Ciudad</label>-->
-                                <label class="pais col l1" style="text-decoration: #000;">País</label>
-                                <label class="nac col l1" style="text-decoration: #000;">F. Nac.</label>
-                                <label class="correo col l1" style="text-decoration: #000;">Correo</label>
-                                <label class="phon col l1" style="text-decoration: #000;">Teléfono</label>
+                                <label class="pais col l2" style="text-decoration: #000;">País</label>
+                                <label class="nac col l2" style="text-decoration: #000;">F. Nac.</label>
+                                <label class="correo col l2" style="text-decoration: #000;">Correo</label>
+                                <label class="phon col l2" style="text-decoration: #000;">Teléfono</label>
                             </div>
 
                             <div class="line-view"></div>
 
                             <div class="row item" v-for="(turista, index)  in turistas" >
                                 <!--<label class="idtur col l1" style="text-decoration: #000;">{{turista.id}}</label>-->
-                                <label class="name col l1" style="text-decoration: #000;">{{turista.name}} {{turista.lastname}}</label>
+                                <label class="name col l2" style="text-decoration: #000;">{{turista.name}} {{turista.lastname}}</label>
                                 <!--<label class="lastape col l2" style="text-decoration: #000;">{{turista.lastname}}</label>-->
                                 <!--<label class="tdoc col l1" style="text-decoration: #000;">{{turista.document_type}}</label>-->
                                 <!--<label class="ndoc col l1" style="text-decoration: #000;">{{turista.document_number}}</label>-->
                                 <!--<label class="ciudad col l1" style="text-decoration: #000;">{{turista.city}}</label>-->
-                                <label class="pais col l1" style="text-decoration: #000;">{{turista.country}}</label>
-                                <label class="nac col l1" style="text-decoration: #000;">{{turista.birth_date}}</label>
-                                <label class="correo col l1" style="text-decoration: #000;">{{turista.email}}</label>
-                                <label class="phon col l1" style="text-decoration: #000;">{{turista.phone}}</label>
+                                <label class="pais col l2" style="text-decoration: #000;">{{turista.country}}</label>
+                                <label class="nac col l2" style="text-decoration: #000;">{{turista.birth_date}}</label>
+                                <label class="correo col l2" style="text-decoration: #000;">{{turista.email}}</label>
+                                <label class="phon col l2" style="text-decoration: #000;">{{turista.phone}}</label>
                                 <a class="waves-effect waves-light  btn-delete" @click="deleteTurista(turista.id, turista, index)" ><i class="material-icons left"  >delete</i></a> 
                     
                             </div>
@@ -751,6 +753,40 @@
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addLugar" >Guardar</a>
                             </div>
                         </div>
+                        
+                        <!-- Modal Enviar Correo de Alerta -->
+
+                        <div id="modalCorreo" class="modal">
+                            <div class="modal-content">
+                              <h5 style="text-align: center;">Redacción de correo</h5>
+                              <form class="col l12">
+                                <div class="row">
+                                    <div class="col l1"></div>
+                                    <div class="input-field col l7">
+                                      <input id="nombre" type="text" class="validate" placeholder="Asunto">
+                                      <label for="nombre">Asunto</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col l1"></div>
+                                    <div class="input-field col l6">
+                                      <input id="ubigeo" type="text" class="validate"placeholder="Mensaje">
+                                      <label for="ubigeo">Mensaje</label>
+                                    </div>
+                                    <div class="col l1"></div>
+                                </div>
+
+                                 </form>
+                              
+                            </div>
+                            <div class="modal-footer">
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                              <a href="mailto:francoccopa@gmail.com" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="enviarMensaje" >Enviar</a>
+                            </div>
+                        </div>
+                        
+                        
                     </section>
                 </div>
                 <div class="row">
@@ -771,7 +807,7 @@
                             <label class="des col l3" style="text-decoration: #000;">{{place.description}}</label>
                             <label class="lugar col l2" style="text-decoration: #000;">{{place.region}}</label>
                             <div class="switch col l2">
-                                <label><input type="checkbox"><span class="lever"></span></label>
+                                <a  class="waves-effect waves-light  btn-delete" href="#modalCorreo">Alertar</a> 
                             </div>
                             <a class="waves-effect waves-light  btn-delete" href="#modalActuaLugar" @click="viewObj(place)"  ><i class="material-icons left">create</i></a> 
                             <a class="waves-effect waves-light  btn-delete" @click="deleteLugar(place.id,place)" ><i class="material-icons left">delete</i></a> 

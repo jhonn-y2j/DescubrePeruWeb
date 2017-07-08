@@ -108,7 +108,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a  href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addProveedor">Guardar</a >
+                              <a  href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addProveedor">Registrar</a >
                             </div>
                         </div>
 
@@ -137,12 +137,13 @@
                                     </div>
 
                                     <div class="line-view"></div>
-
-                                    <div class="row item"  class="row item" v-for="proveedor in proveedorsWaiting"  >
+                                    
+                                    <div class="row item" v-for="proveedor in proveedorsWaiting">
                                         <label class="idprov col l1" >{{proveedor.id}}</label>
                                         <label class="rz col l3" >{{proveedor.business_name}}</label>
                                         <label class="ruc col l2" >{{proveedor.ruc}}</label>
                                         <label class="rpt col l3" >{{proveedor.representative}}</label>
+
                                         
                                         <div class="switch">
                                             <label>
@@ -300,7 +301,9 @@
                                     <div class="input-field col l5">
                                         <select v-model="entityServ.place_id">
                                           <option value=""  selected>Lugar Turístico</option>
-                                          <option v-for="place in places" v-bind:value="place.id">{{place.name}}</option>
+                                          <option  v-for="place in places" v-bind:value="place.id">{{place.name}}</option>
+                                          <option value="3">Option 3</option>
+                                          
                                         </select>
                                     </div>
                                     <div class="input-field col l5">
@@ -316,7 +319,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="mailto:francoccopa@gmail.com" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addServicio">Actualizar</a>
+                              <a href="mailto:francoccopa@gmail.com" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addServicio">Registrar</a>
                             </div>
                         </div>
                         
@@ -353,6 +356,7 @@
                                         <select v-model="entityServ.place_id">
                                           <option value=""  selected>Lugar Turístico</option>
                                           <option v-for="place in places" v-bind:value="place.id">{{place.name}}</option>
+                                          <option value="3">Option 3</option>
                                         </select>	
                                     </div>
                                     <div class="input-field col l5">
@@ -369,7 +373,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="updateServicio(selected)" >Guardar</a>
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="updateServicio(selected)" >Actualizar</a>
                             </div>
                         </div>
                         
@@ -479,7 +483,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addPaquete" >Guardar</a>
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addPaquete" >Registrar</a>
                             </div>
                         </div>
                         
@@ -696,7 +700,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addLugar" >Guardar</a>
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addLugar" >Registrar</a>
                             </div>
                         </div>
                         
@@ -740,7 +744,7 @@
                                     <div class="col l1"></div>
                                     <div class="input-field col l6">
                                       <input id="region" type="text" class="validate" v-model="selected.region" placeholder="Región">
-                                      <label for="region">Region</label>
+                                      <label for="region">Región</label>
                                     </div>
                                     <div class="col l1"></div>
                                 </div>
@@ -750,7 +754,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addLugar" >Guardar</a>
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="updateLugar(selected)" >Actualizar</a>
                             </div>
                         </div>
                         
@@ -875,7 +879,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addCreditCard" >Guardar</a>
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addCreditCard" >Registrar</a>
                             </div>
                         </div>
                         
@@ -929,7 +933,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addCreditCard" >Guardar</a>
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addCreditCard" >Actualizar</a>
                             </div>
                         </div>
                         

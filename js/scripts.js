@@ -17,6 +17,7 @@ const post_servicio = BASE_URL + '/register_services.php';
 const post_paquete = BASE_URL + '/register_package.php';
 const post_lugar = BASE_URL + '/register_place.php';
 const post_credit_card = BASE_URL + '/register_credit_card.php';
+const post_proveedor_waiting = BASE_URL + '/register_supplier_waiting.php';
 
 const actualizar_proveedor = BASE_URL + '/update_supplier.php';
 const actualizar_servicio = BASE_URL + '/update_services.php';
@@ -116,6 +117,17 @@ new Vue({
   	addProveedor: function (){
   		console.log(this.entityProv);
   		this.$http.post(post_proveedor, this.entityProv).then(response => {
+    		console.log(response.body);
+            this.proveedors.push(this.entityProv);
+    		this.entityProv = '';
+		}, response => {
+		    console.log(response);
+		});
+  	},
+        
+        addProveedorWaiting: function (){
+  		console.log(this.entityProv);
+  		this.$http.post(post_proveedor_waiting, this.entityProv).then(response => {
     		console.log(response.body);
             this.proveedors.push(this.entityProv);
     		this.entityProv = '';

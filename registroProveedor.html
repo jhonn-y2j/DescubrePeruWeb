@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,9 +12,22 @@
         
     </head>
     <body>
-        <div id="app">
-        <div class="container">
-            <div class= "card card-container">
+    <div id="app">
+            <div class="container">
+                <div class="row">
+                    <section class="footerTabs">
+
+
+                        <div id="modalEnviarRegistro" class="modal">
+                            <div class="modal-content">
+                            <h5 style="text-align: center;">Se enviará un mensaje a la dirección de correo registrada para confirmar su solicitud de registro en las próximas 72 horas.</h5>
+                            <a class="modal-action modal-close waves-effect waves-light btn" href="index.html" >Aceptar</a>
+                        </div>
+                        </div>
+
+                    </section>
+                </div>
+              <div class= "card card-container">
                 <h2 style="text-align: center;">Registrar Proveedor</h2>
                 <form class="col l12">
                 <div class="form-signin">
@@ -23,7 +37,7 @@
                     </div>    
                     <div class="input-field col l5">
                         <label for="representante">Representante</label>
-                        <input id="representante" type="text" class="form-control validate"  v-model="entityServ.representative">
+                        <input id="representante" type="text" class="form-control validate"  v-model="entityProv.representative">
                     </div>
                     <div class="input-field col l5">
                         <label for="ruc">RUC</label>
@@ -33,7 +47,7 @@
                         <label for="direccion">Dirección</label>
                          <input id="direccion" type="text" class="form-control validate" v-model="entityProv.address">
                     </div>
-                    <div class="form-signin">
+                    <div class="input-field col l5">
                         <label for="pais">País</label>
                        <input id="pais" type="text" class="form-control validate" v-model="entityProv.country">
                     </div>
@@ -54,7 +68,7 @@
 
                 <section class="footerTabs">
                     <div>
-                        <a class="app-boton btn btn-default" v-on:click="addProveedor" href="#modal2">Enviar Solicitud de Registro</a>
+                        <a class="app-boton btn btn-default" href="#modalEnviarRegistro" v-on:click="addProveedorWaiting">Enviar Solicitud de Registro</a>
                         <a class="app-boton btn btn-default" href="index.html">Cancelar</a>
                     </div>
                     <div id="modal2" class="modal">
@@ -65,17 +79,33 @@
                     </div>
                 </section>            
                               
+            </div>  
+                
             </div>
+             
+
         </div>
-        
-        
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.1/vue-resource.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
         <script src="js/scripts.js"></script>
-        
-        
-        </div>
+
+        <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+      <script type="text/javascript">
+           $(".button-collapse").sideNav();
+           $(document).ready(function(){
+            $('.modal').modal({
+                 dismissible: false,
+                 startingTop: '4%', // Starting top style attribute
+                 endingTop: '10%', 
+            });
+            $('select').material_select();
+          });
+      
+      </script>
+
     </body>
 </html>

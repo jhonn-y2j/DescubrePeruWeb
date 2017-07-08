@@ -168,11 +168,11 @@
                                     <div class="col l1"></div>
                                     <div class="input-field col l5">
                                         <input id="rz_social" type="text" class="validate" v-model="selected.business_name" placeholder="Razón Social" >
-                                      <label for="rz_social"> Razón Social ({{selected.business_name}})</label>
+                                      <label for="rz_social"> Razón Social</label>
                                     </div>
                                     <div class="input-field col l5">
                                       <input id="ruc" type="text" class="validate" v-model="selected.ruc" placeholder="RUC">
-                                      <label for="ruc">RUC ({{selected.ruc}})</label>
+                                      <label for="ruc">RUC</label>
                                     </div>
                                     <div class="col l1"></div>
                                 </div>
@@ -180,15 +180,15 @@
                                     <div class="col l1"></div>
                                     <div class="input-field col l4">
                                       <input id="direccion" type="text" class="validate" v-model="selected.address" placeholder="Dirección">
-                                      <label for="direccion">Dirección ({{selected.address}})</label>
+                                      <label for="direccion">Dirección</label>
                                     </div>
                                     <div class="input-field col l3">
                                       <input id="ciudad" type="text" class="validate" v-model="selected.city" placeholder="Ciudad">
-                                      <label class="active" for="ciudad">Ciudad ({{selected.city}})</label>
+                                      <label class="active" for="ciudad">Ciudad</label>
                                     </div>
                                     <div class="input-field col l3">
                                       <input id="pais" type="text" class="validate" v-model="selected.country" placeholder="País">
-                                      <label for="pais">País ({{selected.country}})</label>
+                                      <label for="pais">País</label>
                                     </div>
                                     <div class="col l1"></div>
                                 </div>
@@ -196,18 +196,18 @@
                                     <div class="col l1"></div>
                                     <div class="input-field col l3">
                                       <input id="phone" type="text" class="validate" v-model="selected.phone" placeholder="Teléfono">
-                                      <label for="phone">Teléfono ({{selected.phone}})</label>
+                                      <label for="phone">Teléfono</label>
                                     </div>
                                     <div class="input-field col l4">
                                       <input id="correo" type="email" class="validate" v-model="selected.email" placeholder="Correo Electrónico">
-                                      <label for="correo" data-error="Error" data-success="Éxito">Correo Electrónico ({{selected.email}})</label>
+                                      <label for="correo" data-error="Error" data-success="Éxito">Correo Electrónico</label>
 
                                       <label for="correo" data-error="wrong" data-success="right">Correo Electrónico</label>
 
                                     </div>
                                     <div class="input-field col l3">
                                       <input id="rpte" type="text" class="validate" v-model="selected.representative" placeholder="Representante">
-                                      <label for="rpte">Representante ({{selected.representative}})</label>
+                                      <label for="rpte">Representante</label>
                                     </div>
                                     <div class="col l1"></div>
                                 </div>
@@ -328,11 +328,11 @@
                                     <div class="col l1"></div>
                                     <div class="input-field col l5">
                                       <i class="material-icons prefix">account_circle</i>
-                                      <input id="nombre" type="text" class="validate" v-model="entityServ.title">
+                                      <input id="nombre" type="text" class="validate" v-model="selected.title" placeholder="Nombre">
                                       <label for="nombre">Nombre</label>
-                                    </div>
+                                    </div>                             
                                     <div class="input-field col l5">
-                                      <input id="tipo" type="text" class="validate" v-model="entityServ.type_service_id">
+                                      <input id="tipo" type="text" class="validate" v-model="selected.type_service_id" placeholder="Tipo">
                                       <label for="tipo">Tipo</label>
                                     </div>
                                     <div class="col l1"></div>
@@ -340,7 +340,7 @@
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l10">
-                                      <input id="description" type="text" class="validate" v-model="entityServ.description">
+                                      <input id="description" type="text" class="validate" v-model="selected.description" placeholder="Descripción">
                                       <label for="description">Descripción</label>
                                     </div>
                                     <div class="col l1"></div>
@@ -367,7 +367,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addServicio" >Guardar</a>
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="updateServicio(selected)" >Guardar</a>
                             </div>
                         </div>
                         
@@ -394,8 +394,8 @@
                             <label class="des col l3" style="text-decoration: #000;">{{service.description}}</label>
                             <label class="place col l2" style="text-decoration: #000;">Lugar Turístico</label>
                             <label class="prov col l2" style="text-decoration: #000;">Proveedor</label>
-                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaServ" ><i class="material-icons left">create</i></a> 
-                            <a class="waves-effect waves-light  btn-delete" @click="deleteServicio(service.id)" ><i class="material-icons left">delete</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaServ" @click="viewObj(service)" ><i class="material-icons left">create</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" @click="deleteServicio(service.id,service)" ><i class="material-icons left">delete</i></a> 
                 
                         </div>
                     </article>
@@ -491,14 +491,14 @@
                                     <div class="col l1"></div>
                                     <div class="input-field col l7">
                                       <i class="material-icons prefix">account_circle</i>
-                                      <input id="nombre" type="text" class="validate" v-model="entityPack.title">
+                                      <input id="nombre" type="text" class="validate" v-model="selected.title" placeholder="Nombre">
                                       <label for="nombre">Nombre</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l10">
-                                      <input id="description" type="text" class="validate" v-model="entityPack.description">
+                                      <input id="description" type="text" class="validate" v-model="selected.description" placeholder="Descripción">
                                       <label for="description">Descripción</label>
                                     </div>
                                     <div class="col l1"></div>
@@ -507,7 +507,7 @@
                                     <div class="col l1"></div>
                                     <div class="input-field col l5">
                                       <i class="material-icons prefix">account_circle</i>
-                                      <input id="duration" type="text" class="validate" v-model="entityPack.cost">
+                                      <input id="duration" type="text" class="validate" v-model="selected.cost" placeholder="Descripción">
                                       <label for="duration">Costo</label>
                                     </div>
                                     <div class="input-field col l5">
@@ -534,11 +534,11 @@
                                     <div class="col l1"></div>
                                     <div class="col l5">
                                         <label>Fecha de Inicio</label>
-                                         <input type="date" class="datepicker" v-model="entityPack.init_date">
+                                         <input type="date" class="datepicker" v-model="selected.init_date" placeholder="Fecha de Inicio">
                                     </div>
                                     <div class="col l5">
                                         <label>Fecha de Final</label>
-                                        <input type="date" class="datepicker" v-model="entityPack.end_date">
+                                        <input type="date" class="datepicker" v-model="selected.end_date" placeholder="Fecha de Inicio">
                                     </div>
                                 </div>
                               </form>
@@ -546,7 +546,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addPaquete" >Guardar</a>
+                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="updatePaquete(selected)">Guardar</a>
                             </div>
                         </div>
                         
@@ -579,8 +579,8 @@
                             <label class="detServ col l1" style="text-decoration: #000;">
                                 <a class="waves-effect waves-light  btn-delete" @click="removeQuestion(question.key)" ><i class="material-icons left">attach_file</i></a> 
                             </label>
-                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaPack" ><i class="material-icons left">create</i></a> 
-                            <a class="waves-effect waves-light  btn-delete" @click="deletePaquete(paquete.id)"><i class="material-icons left">delete</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaPack" @click="viewObj(paquete)" ><i class="material-icons left">create</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" @click="deletePaquete(paquete.id,paquete)"><i class="material-icons left">delete</i></a> 
                 
                         </div>
                     </article>
@@ -602,12 +602,12 @@
                     <div class="row">
                         <article class="main col-lg-12" >
                             <div class="col-lg-12">
-                                <label class="idtur col l1" style="text-decoration: #000;">ID</label>
-                                <label class="name col l1" style="text-decoration: #000;">Nombre</label>
-                                <label class="lastape col l2" style="text-decoration: #000;">Apellidos</label>
-                                <label class="tdoc col l1" style="text-decoration: #000;">Tipo de Doc.</label>
-                                <label class="ndoc col l1" style="text-decoration: #000;">Nro Doc.</label>
-                                <label class="ciudad col l1" style="text-decoration: #000;">Ciudad</label>
+                                <!--<label class="idtur col l1" style="text-decoration: #000;">ID</label>-->
+                                <label class="name col l1" style="text-decoration: #000;">Nombre y Apellidos</label>
+                                <!--<label class="lastape col l2" style="text-decoration: #000;">Apellidos</label>-->
+                                <!--<label class="tdoc col l1" style="text-decoration: #000;">Tipo de Doc.</label>-->
+                                <!--<label class="ndoc col l1" style="text-decoration: #000;">Nro Doc.</label>-->
+                                <!--<label class="ciudad col l1" style="text-decoration: #000;">Ciudad</label>-->
                                 <label class="pais col l1" style="text-decoration: #000;">País</label>
                                 <label class="nac col l1" style="text-decoration: #000;">F. Nac.</label>
                                 <label class="correo col l1" style="text-decoration: #000;">Correo</label>
@@ -617,12 +617,12 @@
                             <div class="line-view"></div>
 
                             <div class="row item" v-for="(turista, index)  in turistas" >
-                                <label class="idtur col l1" style="text-decoration: #000;">{{turista.id}}</label>
-                                <label class="name col l1" style="text-decoration: #000;">{{turista.name}}</label>
-                                <label class="lastape col l2" style="text-decoration: #000;">{{turista.lastname}}</label>
-                                <label class="tdoc col l1" style="text-decoration: #000;">{{turista.document_type}}</label>
-                                <label class="ndoc col l1" style="text-decoration: #000;">{{turista.document_number}}</label>
-                                <label class="ciudad col l1" style="text-decoration: #000;">{{turista.city}}</label>
+                                <!--<label class="idtur col l1" style="text-decoration: #000;">{{turista.id}}</label>-->
+                                <label class="name col l1" style="text-decoration: #000;">{{turista.name}} {{turista.lastname}}</label>
+                                <!--<label class="lastape col l2" style="text-decoration: #000;">{{turista.lastname}}</label>-->
+                                <!--<label class="tdoc col l1" style="text-decoration: #000;">{{turista.document_type}}</label>-->
+                                <!--<label class="ndoc col l1" style="text-decoration: #000;">{{turista.document_number}}</label>-->
+                                <!--<label class="ciudad col l1" style="text-decoration: #000;">{{turista.city}}</label>-->
                                 <label class="pais col l1" style="text-decoration: #000;">{{turista.country}}</label>
                                 <label class="nac col l1" style="text-decoration: #000;">{{turista.birth_date}}</label>
                                 <label class="correo col l1" style="text-decoration: #000;">{{turista.email}}</label>
@@ -707,7 +707,7 @@
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l7">
-                                      <input id="nombre" type="text" class="validate" v-model="entityPlace.name">
+                                      <input id="nombre" type="text" class="validate" v-model="selected.name" placeholder="Nombre">
                                       <label for="nombre">Nombre</label>
                                     </div>
                                     <div class="file-field input-field" style="align-content: center;">
@@ -720,7 +720,7 @@
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l10">
-                                      <input id="description" type="text" class="validate" v-model="entityPlace.description">
+                                      <input id="description" type="text" class="validate" v-model="selected.description" placeholder="Descripción">
                                       <label for="description">Descripción</label>
                                     </div>
                                     <div class="col l1"></div>
@@ -728,7 +728,7 @@
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l6">
-                                      <input id="ubigeo" type="text" class="validate" v-model="entityPlace.coordinates">
+                                      <input id="ubigeo" type="text" class="validate" v-model="selected.coordinates" placeholder="Ubicación">
                                       <label for="ubigeo">Ubicación</label>
                                     </div>
                                     <div class="col l1"></div>
@@ -737,7 +737,7 @@
                                  <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l6">
-                                      <input id="region" type="text" class="validate" v-model="entityPlace.region">
+                                      <input id="region" type="text" class="validate" v-model="selected.region" placeholder="Región">
                                       <label for="region">Region</label>
                                     </div>
                                     <div class="col l1"></div>
@@ -773,8 +773,8 @@
                             <div class="switch col l2">
                                 <label><input type="checkbox"><span class="lever"></span></label>
                             </div>
-                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaLugar" ><i class="material-icons left">create</i></a> 
-                            <a class="waves-effect waves-light  btn-delete" @click="deleteLugar(place.id)" ><i class="material-icons left">delete</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaLugar" @click="viewObj(place)"  ><i class="material-icons left">create</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" @click="deleteLugar(place.id,place)" ><i class="material-icons left">delete</i></a> 
                 
                         </div>
                     </article>
@@ -853,11 +853,11 @@
                                     <div class="col l1"></div>
                                     <div class="input-field col l5">
                                       <i class="material-icons prefix">account_circle</i>
-                                      <input id="nombre" type="text" class="validate" v-model="entityCreditCard.name">
+                                      <input id="nombre" type="text" class="validate" v-model="selected.name" placeholder="Ubicación">
                                       <label for="nombre">Nombre</label>
                                     </div>
                                     <div class="input-field col l5">
-                                      <input id="tipo" type="text" class="validate" v-model="entityCreditCard.number_card">
+                                      <input id="tipo" type="text" class="validate" v-model="selected.number_card" placeholder="Número de Tarjeta">
                                       <label for="tipo">Número de Tarjeta</label>
                                     </div>
                                     <div class="col l1"></div>
@@ -865,7 +865,7 @@
                                 <div class="row">
                                     <div class="col l1"></div>
                                     <div class="input-field col l10">
-                                      <input id="description" type="text" class="validate" v-model="entityCreditCard.date_venc">
+                                      <input id="description" type="text" class="validate" v-model="selected.date_venc" placeholder="Fecha de Vencimiento De Tarjeta">
                                       <label for="description">Fecha de Vencimiento De Tarjeta</label>
                                     </div>
                                     <div class="col l1"></div>
@@ -920,8 +920,8 @@
                             <label class="des col l3" style="text-decoration: #000;">{{card.date_venc}}</label>
                             <label class="place col l2" style="text-decoration: #000;">Lugar Turístico</label>
                             <label class="prov col l2" style="text-decoration: #000;">Proveedor</label>
-                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaCompra" ><i class="material-icons left">create</i></a> 
-                            <a class="waves-effect waves-light  btn-delete" @click="deleteCreditCard(card.id)" ><i class="material-icons left">delete</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaCompra" @click="viewObj(card)" ><i class="material-icons left">create</i></a> 
+                            <a class="waves-effect waves-light  btn-delete" @click="deleteCreditCard(card.id,card)" ><i class="material-icons left">delete</i></a> 
                 
                         </div>
                     </article>

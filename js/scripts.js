@@ -120,8 +120,8 @@ new Vue({
 		    console.log(response);
 		});
   	},
-     updateProveedor: function (proveedor){
         
+     updateProveedor: function (proveedor){
   		this.$http.put(actualizar_proveedor, this.selected).then(response => {
     		console.log(this.selected);
             this.selected = '';
@@ -156,6 +156,15 @@ new Vue({
             console.log(response);
         });
     },
+    
+     updateServicio: function (servicio){
+  		this.$http.put(actualizar_servicio, this.selected).then(response => {
+    		console.log(this.selected);
+            this.selected = '';
+		}, response => {
+		    console.log(response);
+		});
+  	},
 
     deleteServicio: function (servicio){
   		console.log(servicio);
@@ -182,6 +191,15 @@ new Vue({
             this.entityPlace.available = '';
             this.entityPlace.description_warning = '';
             this.entityPlace.help_warning = '';
+        }, response => {
+            console.log(response);
+        });
+    },
+
+    updateLugar: function (lugar){
+        this.$http.put(actualizar_lugar, this.selected).then(response => {
+            console.log(this.selected);
+            this.selected = '';
         }, response => {
             console.log(response);
         });
@@ -213,6 +231,15 @@ new Vue({
             console.log(response);
         });
     },
+    
+     updatePaquete: function (paquete){
+  		this.$http.put(actualizar_paquete, this.selected).then(response => {
+    		console.log(this.selected);
+            this.selected = '';
+		}, response => {
+		    console.log(response);
+		});
+  	},
     
     deletePaquete: function (paquete){
   		console.log(paquete);
@@ -250,6 +277,15 @@ new Vue({
         });
     },
     
+    updateCreditCard: function (credit_card){
+  		this.$http.put(actualizar_credit_card, this.selected).then(response => {
+    		console.log(this.selected);
+            this.selected = '';
+		}, response => {
+		    console.log(response);
+		});
+  	},
+    
     deleteCreditCard: function (credit_card){
   		console.log(credit_card);
   		this.$http.delete(eliminar_credit_card, {body : { id : credit_card}} ).then(response => {
@@ -263,12 +299,8 @@ new Vue({
   		console.log(turista);
   		this.$http.delete(eliminar_turista, {body : { id : turista}} ).then(response => {
     		console.log(response.body);
-<<<<<<< HEAD
-                this.turistas.pop(obj);
-=======
-            console.log(index);
-            this.turistas.splice(index, 1);
->>>>>>> 0ad3b8152f47319c65c5ca4e835ee1eb6a332a6b
+                console.log(index);
+                this.turistas.splice(index, 1);
 		}, response => {
 		    console.log(response);
 		});

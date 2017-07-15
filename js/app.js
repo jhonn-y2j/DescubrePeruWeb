@@ -10,11 +10,13 @@ const services_url = BASE_URL + 'list_services.php';
 const paquetes_url = BASE_URL + 'list_package.php';
 const credit_card_url = BASE_URL + 'list_credit_card.php';
 const provEsperando_url = BASE_URL + 'list_suppliers_wait.php';
+const servEsperando_url = BASE_URL + 'list_services_wait.php';
 const assigns_url = BASE_URL + 'list_service_package_detail.php';
 const serviciosDeProv_url = BASE_URL + 'list_services_prov.php';
 
 //patch
 const approve_supplier = BASE_URL + 'approved_supplier.php';
+const approve_service = BASE_URL + 'approved_service.php';
 
 //crear
 const post_proveedor = BASE_URL + 'register_supplier.php';
@@ -23,6 +25,7 @@ const create_user = BASE_URL + 'register_user.php';
 const post_service = BASE_URL + 'register_services.php';
 const post_paquete = BASE_URL + 'register_package.php';
 const post_serv_pack = BASE_URL + 'register_service_package_detail.php';
+const post_service_proveedor = BASE_URL + 'register_services_proveedor';
 
 //eliminar
 const eliminar_proveedor = BASE_URL + 'delete_supplier.php';
@@ -36,6 +39,7 @@ new Vue({
     drawer: true,
     suppliers: [],
     suppliersWait: [],
+    servicesWait:[],
     places: [],
     users: [],
     services: [],
@@ -99,8 +103,13 @@ new Vue({
       {text: 'Lugar Turístico', value: 'placeservice', align: 'center'},
       {text: 'Proveedor', value: 'provservice', align: 'center'},
     ],
-    
-    
+    headersServicesWait:[
+      {text: 'Servicio', value: 'title', align: 'center'},
+      {text: 'Descripción', value: 'description', align: 'center'},
+      {text: 'Tipo Servicio', value: 'type_service_id', align: 'center'},
+      {text: 'Lugar Turístico', value: 'placeservice', align: 'center'},
+      {text: 'Proveedor', value: 'provservice', align: 'center'},
+    ],
     headersServicesDeProv:[
       {text: 'Servicio', value: 'title', align: 'center'},
       {text: 'Descripción', value: 'description', align: 'center'},
@@ -247,6 +256,22 @@ new Vue({
         console.log(response);
       });
     },
+    
+    approveService: function (id, index, item){
+      console.log(id);
+      this.$http.patch(approve_service, {id: id}).then(response => {
+        console.log(response.body);
+          this.text = 'Confirmación Exitosa';
+          this.snackbar = true;
+          this.s = true;
+          this.servicesWait.splice(index, 1);
+      }, response => {
+        this.text = 'Error al confirmar';
+        this.e = true;
+        console.log(response);
+      });
+    },
+    
     addPlace: function (){
         console.log(this.entityPlace);
         this.$http.post(post_lugar, this.entityPlace).then(response => {
@@ -269,6 +294,19 @@ new Vue({
           console.log(response);
       });
     },
+    
+    addServiceProv: function (){
+      console.log(this.entityServ);
+      this.$http.post(post_service_proveedor, this.entityServ).then(response => {
+          console.log(response.body);
+          this.services.push(this.entityServ);
+          this.entityServ = '';
+          this.cservice = false;
+      }, response => {
+          console.log(response);
+      });
+    },
+    
     addPackage: function (){
       console.log(this.entityPack);
       this.$http.post(post_paquete, this.entityPack).then(response => {
@@ -352,7 +390,13 @@ function mounted() {
   }).catch( error => {
     console.log(error);
   });
-
+  
+  this.$http.get(servEsperando_url).then( response => {
+    this.servicesWait = response.body.data;
+  }).catch( error => {
+    console.log(error);
+  });
+  
   this.$http.get(places_url).then( response => {
     this.places = response.body.data;
   }).catch( error => {

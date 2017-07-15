@@ -16,8 +16,6 @@
             <div class="container">
                 <div class="row">
                     <section class="footerTabs">
-
-
                         <div id="modalEnviarRegistro" class="modal">
                             <div class="modal-content">
                             <h5 style="text-align: center;">Se enviará un mensaje a la dirección de correo registrada para confirmar su solicitud de registro en las próximas 72 horas.</h5>
@@ -62,6 +60,21 @@
                     <div class="input-field col l5">
                         <label for="correo">Correo Electrónico</label>
                         <input id="correo" type="text" class="form-control validate" v-model="entityProv.email">
+                    </div>
+                    <div id="app" class="input-field col l5">
+                        <label for="rubros">Rubros</label>
+                        <br>
+                        <input type="checkbox" id="hoteleria" value="Hoteleria" v-model="erubro">
+                        <label for="hoteleria">Hoteleria</label>
+                        <input type="checkbox" id="restaurante" value="Restaurante" v-model="erubro">
+                        <label for="restaurante">Restaurante</label>
+                        <input type="checkbox" id="transporte" value="Transporte" v-model="erubro">
+                        <label for="transporte">Transporte</label>
+                        <span>Checked names: {{ erubro }}</span>
+                    </div>
+                    <div class="input-field col l5">
+                        <label for="provided">Describa sus servicios brindados</label>
+                        <input id="provided" type="text" class="form-control validate" v-model="entityProv.provided">
                     </div>
                 </div>
                 </form>

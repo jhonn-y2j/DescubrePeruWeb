@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Descubre Perú App</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <template>
+	  	<v-app height="415px" light id="e3" standalone>
+	    <v-navigation-drawer class="pb-0" persistent absolute height="100%" clipped enable-resize-watcher v-model="drawer" >
+	      <v-list dense>
+	        <v-list-tile class="mt-2" @click.native="changesView(1)">
+	          <v-list-tile-action>
+	            <v-icon class="grey--text text--darken-1">business_center</v-icon>
+	          </v-list-tile-action>
+	          <v-list-tile-title class="grey--text text--darken-1">PROVEEDORES</v-list-tile-title>
+	        </v-list-tile>
+	        <v-list-tile class="mt-2" @click.native="changesView(2)">
+	          <v-list-tile-action>
+	            <v-icon class="grey--text text--darken-1">loyalty</v-icon>
+	          </v-list-tile-action>
+	          <v-list-tile-title class="grey--text text--darken-1">SERVICIOS</v-list-tile-title>
+	        </v-list-tile>
+	        <v-list-tile class="mt-2" @click.native="changesView(3)" >
+	          <v-list-tile-action>
+	            <v-icon class="grey--text text--darken-1">local_offer</v-icon>
+	          </v-list-tile-action>
+	          <v-list-tile-title class="grey--text text--darken-1">PAQUETES</v-list-tile-title>
+	        </v-list-tile>
+	        <v-list-tile class="mt-2" @click.native="changesView(4)">
+	          <v-list-tile-action>
+	            <v-icon class="grey--text text--darken-1">place</v-icon>
+	          </v-list-tile-action>
+	          <v-list-tile-title class="grey--text text--darken-1">LUGARES TURÍSTICOS</v-list-tile-title>
+	        </v-list-tile>
+	        <v-list-tile class="mt-2" @click.native="changesView(5)">
+	          <v-list-tile-action>
+	            <v-icon class="grey--text text--darken-1">person_pin</v-icon>
+	          </v-list-tile-action>
+	          <v-list-tile-title class="grey--text text--darken-1">TURISTAS</v-list-tile-title>
+	        </v-list-tile>
+	        <v-list-tile class="mt-2" @click.native="changesView(6)">
+	          <v-list-tile-action>
+	            <v-icon class="grey--text text--darken-1">shopping_cart</v-icon>
+	          </v-list-tile-action>
+	          <v-list-tile-title class="grey--text text--darken-1">COMPRAS</v-list-tile-title>
+	        </v-list-tile>
+	      </v-list>
+        </v-navigation-drawer>
+	    <v-toolbar dark class="primary">
+	      <v-toolbar-title>
+	        <v-toolbar-side-icon @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
+	        DESCUBRE PERÚ APP
+	      </v-toolbar-title>
+	      <v-spacer></v-spacer>
+	    </v-toolbar>
+    <main>
+      <v-container>
+        <v-layout>
+          <v-flex xs12>
+            <v-card height="620px">
+            	<template v-if="viewItems == 1">
+            		<div>
+                		<v-btn round primary @click.native="dialog = true"><v-icon x-medium dark>person_add</v-icon></v-btn>
+                		<v-btn round primary @click.native="confirm = true"><v-icon x-medium dark>thumb_up</v-icon></v-btn>
+                		<b class="text-xs-center">PROVEEDORES REGISTRADOS</b>
+              	  	</div>
+              	  	<template>
+					  <v-layout row justify-center>
+					    <v-dialog v-model="dialog" persistent fullscreen transition="dialog-bottom-transition" :overlay=false>
+					    	<v-toolbar dark class="primary">
+					          <v-btn icon @click.native="dialog = false" dark>
+					            <v-icon>close</v-icon>
+					          </v-btn>
+					          <v-toolbar-title>Nuevo Proveedor</v-toolbar-title>
+					          <v-spacer></v-spacer>
+					          <v-toolbar-items>
+					            <v-btn dark flat @click.native="addSupplier">REGISTRAR</v-btn>
+					          </v-toolbar-items>
+					        </v-toolbar>
+					      <v-card>
+						      <v-layout row justify-center>
+						      	<v-flex sm4>
+							        <v-card-text>
+							        	<v-text-field label="Razón Social" required v-model="entitySupplier.business_name"></v-text-field>
+							        	<v-text-field label="RUC" required v-model="entitySupplier.ruc"></v-text-field>
+							        	<v-text-field label="Representante" required  v-model="entitySupplier.representative"></v-text-field>
+							        	<v-text-field label="Dirección" v-model="entitySupplier.address"></v-text-field>
+							        	<v-text-field label="Ciudad" v-model="entitySupplier.city"></v-text-field>
+							          	<v-text-field label="Correo Electrónico" required v-model="entitySupplier.email"></v-text-field>
+							          	<v-text-field label="Teléfono" required v-model="entitySupplier.phone"></v-text-field>
+							          	<small>* Campos requeridos</small>
+							        </v-card-text>
+						        </v-flex>
+					       	   </v-layout>
+					      </v-card>
+					    </v-dialog>
+					  </v-layout>
+					</template>
+					<template>
+					  <v-layout row justify-center>
+					    <v-dialog v-model="confirm" persistent fullscreen transition="dialog-bottom-transition" :overlay=false>
+					    	<v-toolbar dark class="primary">
+					          <v-btn icon @click.native="confirm = false" dark>
+					            <v-icon>close</v-icon>
+					          </v-btn>
+					          <v-toolbar-title>Proveedores Solicitantes</v-toolbar-title>
+					          <v-spacer></v-spacer>
+					        </v-toolbar>
+					      <v-card>
+						      <v-layout row justify-center>
+						      	<v-flex sm10>
+							        <v-card-text>
+							        	 <div class="mt-3">
+										    <v-data-table
+										      v-bind:headers="headersSuppliersWait"
+										      v-bind:items="suppliersWait"
+										      v-bind:search="search"
+										      v-bind:pagination.sync="paginationWait"
+										      hide-actions
+										      class="elevation-1"
+										    >
+										      <template slot="headerCell" scope="props">
+										        <span v-tooltip:bottom="{ 'html': props.header.text }">
+										          {{ props.header.text }}
+										        </span>
+										      </template>
+										      <template slot="items" scope="props">
+										        <td class="text-xs-center">{{props.item.business_name}}</td>
+										        <td class="text-xs-center">{{props.item.ruc}}</td>
+										        <td class="text-xs-center">{{props.item.email}}</td>
+										        <td class="text-xs-center">{{props.item.representative}}</td>
+										        <td class="text-xs-center">
+										        	<v-btn primary fab small dark @click.native="approveSupplier(props.item.id, props.index, props.item)"><v-icon>check</v-icon></v-btn>
+										        </td>
+										      </template>
+										    </v-data-table>
+										    <div class="text-xs-center pt-2">
+										      <v-pagination v-model="paginationWait.page" :length="Math.ceil(this.suppliersWait.length / paginationWait.rowsPerPage)"></v-pagination>
+										    </div>
+										</div>
+										<v-snackbar
+									      :timeout="timeout"
+									      :top="y === 'top'"
+									      :right="x === 'right'"
+									      :success= "s === true"
+									      :error = "e === true"
+									      v-model="snackbar">
+									      {{text}}
+									      <v-btn flat class="white--text" @click.native="snackbar = false"><v-icon dark>close</v-icon></v-btn>
+									    </v-snackbar>
+							        </v-card-text>
+						        </v-flex>
+					       	   </v-layout>
+					      </v-card>
+					    </v-dialog>
+					  </v-layout>
+					</template>
+				  <div class="mt-3">
+				    <v-data-table
+				      v-bind:headers="headersSuppliers"
+				      v-bind:items="suppliers"
+				      v-bind:search="search"
+				      v-bind:pagination.sync="pagination"
+				      hide-actions
+				      class="elevation-1"
+				    >
+				      <template slot="headerCell" scope="props">
+				        <span v-tooltip:bottom="{ 'html': props.header.text }">
+				          {{ props.header.text }}
+				        </span>
+				      </template>
+				      <template slot="items" scope="props">
+				        <td class="text-xs-center">{{props.item.business_name}}</td>
+				        <td class="text-xs-center">{{props.item.ruc}}</td>
+				        <td class="text-xs-center">{{props.item.city}}</td>
+				        <td class="text-xs-center">{{props.item.phone}}</td>
+				        <td class="text-xs-center">{{props.item.email}}</td>
+				        <td class="text-xs-center">{{props.item.representative}}</td>
+				        <td class="text-xs-center">
+				        <v-btn primary fab small dark @click.native="deleteProveedor(props.item.id, props.index )"><v-icon>delete</v-icon></v-btn></td>
+				      </template>
+				    </v-data-table>
+				    <div class="text-xs-center pt-2">
+				      <v-pagination v-model="pagination.page" :length="Math.ceil(this.suppliers.length / pagination.rowsPerPage)"></v-pagination>
+				    </div>
+				  </div>
+				</template>
+				<template v-if="viewItems == 2">
+					<div>
+                		<v-btn round primary @click.native="cservice = true"> <v-icon x-medium dark>add</v-icon></v-btn>
+                		<b class="text-xs-center">SERVICIOS REGISTRADOS</b>
+              	  	</div>
+              	  	<template>
+					  <v-layout row justify-center>
+					    <v-dialog v-model="cservice" persistent fullscreen transition="dialog-bottom-transition" :overlay=false>
+					    	<v-toolbar dark class="primary">
+					          <v-btn icon @click.native="cservice = false" dark>
+					            <v-icon>close</v-icon>
+					          </v-btn>
+					          <v-toolbar-title>Crear Servicio</v-toolbar-title>
+					          <v-spacer></v-spacer>
+					          <v-toolbar-items>
+					            <v-btn dark flat @click.native="addService">REGISTRAR</v-btn>
+					          </v-toolbar-items>
+					        </v-toolbar>
+					      <v-card>
+						      <v-layout row justify-center>
+						      	<v-flex sm4>
+							        <v-card-text>
+							        	<v-text-field label="Title" required v-model="entityServ.title"></v-text-field>
+							        	<v-text-field label="Descripción" required v-model="entityServ.description" multi-line></v-text-field>
+							        	<v-text-field label="URL Imagen" required  v-model="entityServ.url_images"></v-text-field>
+							          	<small>* Campos requeridos</small>
+							        </v-card-text>
+						        </v-flex>
+						        <v-flex sm4>
+							        <v-card-text>
+							        	<v-select
+							              v-bind:items="rubros"
+							              v-model="entityServ.type_service_id"
+							              label="Rubro"
+							              single-line
+							              bottom
+							            ></v-select>
+							        	<v-select
+							              v-bind:items="places"
+							              item-text="name"
+							              item-value="id"
+							              v-model="entityServ.place_id"
+							              label="Seleccionar Lugar Turístico"
+							              single-line
+							              bottom
+							            ></v-select>
+							            <v-select
+							              v-bind:items="suppliers"
+							              item-text="business_name"
+							              item-value="id"
+							              v-model="entityServ.supplier_id"
+							              label="Seleccionar Proveedor"
+							              single-line
+							              bottom
+							            ></v-select>
+							        </v-card-text>
+						        </v-flex>
+					       	   </v-layout>
+					      </v-card>
+					    </v-dialog>
+					  </v-layout>
+					</template>
+					<div class="mt-3">
+					    <v-data-table
+					      v-bind:headers="headersServices"
+					      v-bind:items="services"
+					      v-bind:search="search"
+					      v-bind:pagination.sync="pagination"
+					      hide-actions
+					      class="elevation-1"
+					    >
+					      <template slot="headerCell" scope="props">
+					        <span v-tooltip:bottom="{ 'html': props.header.text }">
+					          {{ props.header.text }}
+					        </span>
+					      </template>
+					      <template slot="items" scope="props">
+					        <td class="text-xs-center">{{props.item.title}}</td>
+					        <td class="text-xs-center">{{props.item.description}}</td>
+					        <td class="text-xs-center">{{props.item.type_service_id}}</td>
+					        <td class="text-xs-center">Lugar</td>
+					        <td class="text-xs-center">Proveedor</td>
+					        <td class="text-xs-center">
+					        <v-btn primary fab small dark><v-icon>delete</v-icon></v-btn></td>
+					      </template>
+					    </v-data-table>
+					    <div class="text-xs-center pt-2">
+					      <v-pagination v-model="pagination.page" :length="Math.ceil(this.services.length / pagination.rowsPerPage)"></v-pagination>
+					    </div>
+					  </div>
+				</template>
+				<template v-if="viewItems == 3">
+					<div>
+                		<v-btn round primary @click.native="cpackage = true"><v-icon x-medium dark>add_circle</v-icon></v-btn>
+                		<b class="text-xs-center">PAQUETES REGISTRADOS</b>
+              	  	</div>
+              	  	<template>
+					  <v-layout row justify-center>
+					    <v-dialog v-model="cpackage" persistent fullscreen transition="dialog-bottom-transition" :overlay=false>
+					    	<v-toolbar dark class="primary">
+					          <v-btn icon @click.native="cpackage = false" dark>
+					            <v-icon>close</v-icon>
+					          </v-btn>
+					          <v-toolbar-title>Crear Package</v-toolbar-title>
+					          <v-spacer></v-spacer>
+					          <v-toolbar-items>
+					            <v-btn dark flat @click.native="addPackage">REGISTRAR</v-btn>
+					          </v-toolbar-items>
+					        </v-toolbar>
+					      <v-card>
+						      <v-layout row justify-center>
+						      	<v-flex sm4>
+							        <v-card-text>
+							        	<v-text-field label="Title" required v-model="entityPack.title"></v-text-field>
+							        	<v-text-field label="Descripción" required v-model="entityPack.description" multi-line></v-text-field>
+							        	<v-text-field label="Días duración" required  v-model="entityPack.day_duration"></v-text-field>
+							        	<v-text-field label="Costo S/." required  v-model="entityPack.cost"></v-text-field>
+							          	<small>* Campos requeridos</small>
+							        </v-card-text>
+						        </v-flex>
+						        <v-flex sm4>
+							        <v-card-text>
+							        	<v-menu
+								          lazy
+								          :close-on-content-click="false"
+								          v-model="menu"
+								          transition="scale-transition"
+								          offset-y
+								          full-width
+								          :nudge-left="40"
+								          max-width="290px"
+								        >
+								          <v-text-field
+								            slot="activator"
+								            label="Fecha de Inicio"
+								            v-model="entityPack.init_date"
+								            prepend-icon="event"
+								            readonly
+								          ></v-text-field>
+								          <v-date-picker v-model="entityPack.init_date" no-title scrollable actions>
+								            <template scope="{ save, cancel }">
+								              <v-card-actions>
+								                <v-btn flat primary @click.native="cancel()">Cancel</v-btn>
+								                <v-btn flat primary @click.native="save()">Save</v-btn>
+								              </v-card-actions>
+								            </template>
+								          </v-date-picker>
+								        </v-menu>
+								        <v-menu
+								          lazy
+								          :close-on-content-click="false"
+								          v-model="menuEnd"
+								          transition="scale-transition"
+								          offset-y
+								          full-width
+								          :nudge-left="40"
+								          max-width="290px"
+								        >
+								          <v-text-field
+								            slot="activator"
+								            label="Fecha de Finalización"
+								            v-model="entityPack.end_date"
+								            prepend-icon="event"
+								            readonly
+								          ></v-text-field>
+								          <v-date-picker v-model="entityPack.end_date" no-title scrollable actions>
+								            <template scope="{ save, cancel }">
+								              <v-card-actions>
+								                <v-btn flat primary @click.native="cancel()">Cancel</v-btn>
+								                <v-btn flat primary @click.native="save()">Save</v-btn>
+								              </v-card-actions>
+								            </template>
+								          </v-date-picker>
+								        </v-menu>
+							        	<v-select
+							              v-bind:items="places"
+							              item-text="name"
+							              item-value="id"
+							              v-model="entityPack.place_id"
+							              label="Seleccionar Lugar Turístico"
+							              single-line
+							              bottom
+							            ></v-select>
+							            <v-select
+							              v-bind:items="promos"
+							              v-model="entityPack.promo_id"
+							              label="Seleccionar una promoción"
+							              single-line
+							              bottom
+							            ></v-select>
+							        </v-card-text>
+						        </v-flex>
+					       	   </v-layout>
+					      </v-card>
+					    </v-dialog>
+					  </v-layout>
+					</template>
+					<div class="mt-3">
+					    <v-data-table
+					      v-bind:headers="headersPackages"
+					      v-bind:items="packages"
+					      v-bind:search="search"
+					      v-bind:pagination.sync="pagination"
+					      hide-actions
+					      class="elevation-1"
+					    >
+					      <template slot="headerCell" scope="props">
+					        <span v-tooltip:bottom="{ 'html': props.header.text }">
+					          {{ props.header.text }}
+					        </span>
+					      </template>
+					      <template slot="items" scope="props">
+					        <td class="text-xs-center">{{props.item.title}}</td>
+					        <td class="text-xs-left">{{props.item.description}}</td>
+					        <td class="text-xs-center">{{props.item.cost}}</td>
+					        <td class="text-xs-center">{{props.item.end_date}}</td>
+					        <td class="text-xs-center">
+					        <v-btn primary fab small dark @click.native="viewSelectObj(props.item)"><v-icon>assignment</v-icon></v-btn></td>
+					      </template>
+					    </v-data-table>
+					    <div class="text-xs-center pt-2">
+					      <v-pagination v-model="pagination.page" :length="Math.ceil(this.packages.length / pagination.rowsPerPage)"></v-pagination>
+					    </div>
+					  </div>
+					  	<template>
+						  <v-layout row justify-center>
+						    <v-dialog v-model="cassign" persistent fullscreen transition="dialog-bottom-transition" :overlay=false>
+						    	<v-toolbar dark class="primary">
+						          <v-btn icon @click.native="cassign = false" dark>
+						            <v-icon>close</v-icon>
+						          </v-btn>
+						          <v-toolbar-title>Asignar servicios a paquete</v-toolbar-title>
+						          <v-spacer></v-spacer>
+						          <v-spacer></v-spacer>
+						          <v-spacer></v-spacer>
+						          {{selectObj.title}}
+						          <v-spacer></v-spacer>
+						        </v-toolbar>
+							      <v-card>
+								      <v-layout row justify-center>
+								      	<v-flex sm10>
+									        <v-card-text>
+									        	 <div>
+									        	 	<v-layout row>
+									        	 		<v-flex xs4>
+									        	 			<v-select
+												              v-bind:items="services"
+												              item-text="title"
+												              item-value="id"
+												              v-model="entitySerPack.service_id"
+												              label="Seleccionar un servicio"
+												              single-line
+												              bottom
+												            ></v-select>
+									        	 		</v-flex>
+									        	 		<v-flex xs5>
+									        	 			<v-text-field label="Descripción" required v-model="entitySerPack.description"></v-text-field>
+									        	 		</v-flex>
+									        	 		<v-flex xs2>
+									        	 			<v-text-field label="Costo S/." required v-model="entitySerPack.cost"></v-text-field>
+									        	 		</v-flex>
+									        	 		<v-flex xs1>
+									        	 			<div>
+                												<v-btn round primary @click.native="addServPack"><v-icon x-medium dark>check</v-icon></v-btn>
+              	  											</div>
+									        	 		</v-flex>
+									        	 	</v-layout>
+									        	 </div>
+									        	 <div class="mt-3">
+												    <v-data-table
+												      v-bind:headers="headersAssign"
+												      v-bind:items="assigns"
+												      v-bind:search="search"
+												      v-bind:pagination.sync="pagination"
+												      hide-actions
+												      class="elevation-1"
+												    >
+												      <template slot="headerCell" scope="props">
+												        <span v-tooltip:bottom="{ 'html': props.header.text }">
+												          {{ props.header.text }}
+												        </span>
+												      </template>
+												      <template slot="items" scope="props">
+												        <td class="text-xs-left">{{props.item.description}}</td>
+												        <td class="text-xs-center">{{props.item.cost}}</td>
+												        <td class="text-xs-center">
+												        	<v-btn error fab small dark @click.native="deleteServPack(props.item.id, props.index)"><v-icon>close</v-icon></v-btn>
+												        </td>
+												      </template>
+												    </v-data-table>
+												    <div class="text-xs-center pt-2">
+												      <v-pagination v-model="pagination.page" :length="Math.ceil(this.assigns.length / pagination.rowsPerPage)"></v-pagination>
+												    </div>
+												</div>
+									        </v-card-text>
+								        </v-flex>
+							       	   </v-layout>
+							      </v-card>
+						    </v-dialog>
+						  </v-layout>
+						</template>
+				</template>
+				<template v-if="viewItems == 4">
+					<div>
+                		<v-btn round primary  @click.native="modalPlace = true"><v-icon x-medium dark>add_location</v-icon></v-btn>
+                		<b class="text-xs-center">LUGARES TURÍSTICOS</b>
+              	  	</div>
+              	  	<template>
+					  <v-layout row justify-center>
+					    <v-dialog v-model="modalPlace" persistent fullscreen transition="dialog-bottom-transition" :overlay=false>
+					    	<v-toolbar dark class="primary">
+					          <v-btn icon @click.native="modalPlace = false" dark>
+					            <v-icon>close</v-icon>
+					          </v-btn>
+					          <v-toolbar-title>AGREGAR LUGAR TURÍSTICO</v-toolbar-title>
+					          <v-spacer></v-spacer>
+					          <v-toolbar-items>
+					            <v-btn dark flat @click.native="addPlace" >REGISTRAR</v-btn>
+					          </v-toolbar-items>
+					        </v-toolbar>
+					      <v-card>
+						      <v-layout row justify-center>
+						      	<v-flex sm4>
+							        <v-card-text>
+							        	<v-text-field label="Nombre" required v-model="entityPlace.name"></v-text-field>
+							        	<v-text-field label="Descripción" required v-model="entityPlace.description"></v-text-field>
+							        	<v-text-field label="Región" required  v-model="entityPlace.region"></v-text-field>
+							        	<v-text-field label="Ubicación" required  v-model="entityPlace.coordinates"></v-text-field>
+							        	<v-text-field label="URL Video" v-model="entityPlace.url_videos"></v-text-field>
+							          	<small>* Campos requeridos</small>
+							        </v-card-text>
+						        </v-flex>
+					       	   </v-layout>
+					      </v-card>
+					    </v-dialog>
+					  </v-layout>
+					</template>
+					<div class="mt-3">
+					    <v-data-table
+					      v-bind:headers="headersPlaces"
+					      v-bind:items="places"
+					      v-bind:search="search"
+					      selected-key="id"
+					      v-bind:pagination.sync="paginationPlace"
+					      hide-actions
+					      class="elevation-1"
+					    >
+					      <template slot="headerCell" scope="props">
+					        <span v-tooltip:bottom="{ 'html': props.header.text }">
+					          {{ props.header.text }}
+					        </span>
+					      </template>
+					      <template slot="items" scope="props">
+					        <td class="text-xs-left">{{props.item.name}}</td>
+					        <td class="text-xs-left">{{props.item.description}}</td>
+					        <td class="text-xs-center">{{props.item.region}}</td>
+					        <td class="text-xs-center">Alertar</td>
+					        <td class="text-xs-center">
+					        <v-btn primary fab small dark @click.native="deletePlace(props.item.id, props.index)"><v-icon>delete</v-icon></v-btn></td>
+					      </template>
+					    </v-data-table>
+					    <div class="text-xs-center pt-2">
+					      <v-pagination v-model="paginationPlace.page" :length="Math.ceil(this.places.length /paginationPlace.rowsPerPage)"></v-pagination>
+					    </div>
+					  </div>
+				</template>
+				<template v-if="viewItems == 5">
+					<div class="text-xs-center" style="padding-top: 10px;"><b>USUARIOS REGISTRADOS</b></div>
+					<div class="mt-3">
+					    <v-data-table
+					      v-bind:headers="headersUsers"
+					      v-bind:items="users"
+					      v-bind:search="search"
+					      v-bind:pagination.sync="pagination"
+					      hide-actions
+					      class="elevation-1"
+					    >
+					      <template slot="headerCell" scope="props">
+					        <span v-tooltip:bottom="{ 'html': props.header.text }">
+					          {{ props.header.text }}
+					        </span>
+					      </template>
+					      <template slot="items" scope="props">
+					        <td class="text-xs-center">{{props.item.name}}</td>
+					        <td class="text-xs-left">{{props.item.email}}</td>
+					        <td class="text-xs-center">{{props.item.country}}</td>
+					        <td class="text-xs-center">{{props.item.phone}}</td>
+					        <td class="text-xs-center">{{props.item.birth_date}}</td>
+					        <td><v-btn primary fab small dark @click.native="deleteUser(props.item.id, props.index )"><v-icon>delete</v-icon></v-btn></td>
+					      </template>
+					    </v-data-table>
+					    <div class="text-xs-center pt-2">
+					      <v-pagination v-model="pagination.page" :length="Math.ceil(this.users.length / pagination.rowsPerPage)"></v-pagination>
+					    </div>
+					  </div>
+				</template>
+				<template v-if="viewItems == 6">
+					<div class="text-xs-center" style="padding-top: 10px;"><b>PAQUETES COMPRADOS</b></div>
+					<div class="mt-3">
+					    <v-data-table
+					      v-bind:headers="headersShoppings"
+					      v-bind:items="shoppings"
+					      v-bind:search="search"
+					      v-bind:pagination.sync="pagination"
+					      hide-actions
+					      class="elevation-1"
+					    >
+					      <template slot="headerCell" scope="props">
+					        <span v-tooltip:bottom="{ 'html': props.header.text }">
+					          {{ props.header.text }}
+					        </span>
+					      </template>
+					      <template slot="items" scope="props">
+					        <td class="text-xs-center">{{props.item.name}}</td>
+					        <td class="text-xs-center">Paquete</td>
+					        <td class="text-xs-center">Fecha de compra</td>
+					        <td class="text-xs-center">{{props.item.number_card}}</td>
+					        <td class="text-xs-center">{{props.item.date_venc}}</td>
+					      </template>
+					    </v-data-table>
+					    <div class="text-xs-center pt-2">
+					      <v-pagination v-model="pagination.page" :length="Math.ceil(this.shoppings.length / pagination.rowsPerPage)"></v-pagination>
+					    </div>
+					  </div>
+				</template>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </main>
+  </v-app>
+</template>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.1/vue-resource.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script src="js/app.js"></script>
+ 
+</body>
+</html>

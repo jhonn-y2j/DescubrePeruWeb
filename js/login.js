@@ -6,7 +6,7 @@ function handleSignIn(){
 
 	console.log(email);
 	if (email == "admin" && pass == "admin") {
-		window.location = 'admin.html';
+		window.location = 'dashboard.html';
 	}else{
 		window.location = 'login.html'
 	}

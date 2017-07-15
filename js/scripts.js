@@ -39,11 +39,13 @@ new Vue({
     proveedors: [],
     proveedorsWaiting: [],
     turistas: [],
+    rubros: [],
     services: [],
     paquetes: [],
     places: [],
     credit_card:[],
     selected: '',
+    erubro: [],
     entityProv: {
         id: '',
     	business_name: '',
@@ -53,7 +55,9 @@ new Vue({
     	country: '',
     	phone: '',
     	email: '',
-    	representative: ''
+    	representative: '',
+        items: '',
+        provided: ''
     },
     entityServ: {
         id:'',
@@ -113,6 +117,9 @@ new Vue({
 
   },
   mounted: mounted,
+  updated: function(){
+    $('select').material_select();
+  },
   methods:{
   	addProveedor: function (){
   		console.log(this.entityProv);
@@ -127,6 +134,7 @@ new Vue({
         
         addProveedorWaiting: function (){
   		console.log(this.entityProv);
+        this.entityProv.items = this.erubro.toString();
   		this.$http.post(post_proveedor_waiting, this.entityProv).then(response => {
     		console.log(response.body);
             this.proveedors.push(this.entityProv);
@@ -155,7 +163,7 @@ new Vue({
 		});
     },
     
-     confirmProveedor: function (proveedor){
+    confirmProveedor: function (proveedor){
   		this.$http.put(confirmar_proveedor, this.selected).then(response => {
     		console.log(this.selected);
             this.selected = '';
@@ -337,8 +345,10 @@ new Vue({
         this.selected = p;
     }
   
+  },
+  updated: function (){
+    $('select').material_select();
   }
-
 
 });
 

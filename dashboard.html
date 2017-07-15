@@ -268,9 +268,9 @@
 					      <template slot="items" scope="props">
 					        <td class="text-xs-center">{{props.item.title}}</td>
 					        <td class="text-xs-center">{{props.item.description}}</td>
-					        <td class="text-xs-center">{{props.item.type_service_id}}</td>
-					        <td class="text-xs-center">Lugar</td>
-					        <td class="text-xs-center">Proveedor</td>
+					        <td class="text-xs-center">{{props.item.type_service}}</td>
+					        <td class="text-xs-center">{{props.item.place}}</td>
+					        <td class="text-xs-center">{{props.item.business_name}}</td>
 					        <td class="text-xs-center">
 					        <v-btn primary fab small dark><v-icon>delete</v-icon></v-btn></td>
 					      </template>
@@ -572,7 +572,7 @@
 					        </span>
 					      </template>
 					      <template slot="items" scope="props">
-					        <td class="text-xs-center">{{props.item.name}}</td>
+					        <td class="text-xs-center">{{props.item.name}} {{props.item.lastname}}</td>
 					        <td class="text-xs-left">{{props.item.email}}</td>
 					        <td class="text-xs-center">{{props.item.country}}</td>
 					        <td class="text-xs-center">{{props.item.phone}}</td>
@@ -602,9 +602,9 @@
 					        </span>
 					      </template>
 					      <template slot="items" scope="props">
-					        <td class="text-xs-center">{{props.item.name}}</td>
-					        <td class="text-xs-center">Paquete</td>
-					        <td class="text-xs-center">Fecha de compra</td>
+					        <td class="text-xs-center">{{props.item.tourist_name}} {{props.item.tourist_lastname}}</td>
+					        <td class="text-xs-center">{{props.item.package_tour_title}}</td>
+					        <td class="text-xs-center">{{props.item.currency_date}}</td>
 					        <td class="text-xs-center">{{props.item.number_card}}</td>
 					        <td class="text-xs-center">{{props.item.date_venc}}</td>
 					      </template>

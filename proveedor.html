@@ -1,156 +1,179 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Descubre Perú App</title>
-        <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="css/admin.css">
-      <!--Import materialize.css-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
+<head>
+  <meta charset="utf-8">
+  <title>Descubre Perú App</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <template>
+	  	<v-app height="415px" light id="e3" standalone>
+	    <v-navigation-drawer class="pb-0" persistent absolute height="100%" clipped enable-resize-watcher v-model="drawer" >
+	      <v-list dense>
+	        <v-list-tile class="mt-2" @click.native="changesView(2)">
+	          <v-list-tile-action>
+	            <v-icon class="grey--text text--darken-1">loyalty</v-icon>
+	          </v-list-tile-action>
+	          <v-list-tile-title class="grey--text text--darken-1">SERVICIOS</v-list-tile-title>
+	        </v-list-tile>
+	        <v-list-tile class="mt-2" @click.native="changesView(6)">
+	          <v-list-tile-action>
+	            <v-icon class="grey--text text--darken-1">shopping_cart</v-icon>
+	          </v-list-tile-action>
+	          <v-list-tile-title class="grey--text text--darken-1">VENTAS</v-list-tile-title>
+	        </v-list-tile>
+	      </v-list>
+        </v-navigation-drawer>
+	    <v-toolbar dark class="primary">
+	      <v-toolbar-title>
+	        <v-toolbar-side-icon @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
+	        DESCUBRE PERÚ APP
+	      </v-toolbar-title>
+	      <v-spacer></v-spacer>
+	    </v-toolbar>
+    <main>
+      <v-container>
+        <v-layout>
+          <v-flex xs12>
+            <v-card height="620px">
+            	<template v-if="viewItems == 2">
+					<div>
+                		<v-btn round primary @click.native="cservice = true"> <v-icon x-medium dark>add</v-icon></v-btn>
+                		<b class="text-xs-center">SERVICIOS REGISTRADOS</b>
+              	  	</div>
+              	  	<template>
+					  <v-layout row justify-center>
+					    <v-dialog v-model="cservice" persistent fullscreen transition="dialog-bottom-transition" :overlay=false>
+					    	<v-toolbar dark class="primary">
+					          <v-btn icon @click.native="cservice = false" dark>
+					            <v-icon>close</v-icon>
+					          </v-btn>
+					          <v-toolbar-title>Crear Servicio</v-toolbar-title>
+					          <v-spacer></v-spacer>
+					          <v-toolbar-items>
+					            <v-btn dark flat @click.native="addService">REGISTRAR</v-btn>
+					          </v-toolbar-items>
+					        </v-toolbar>
+					      <v-card>
+						      <v-layout row justify-center>
+						      	<v-flex sm4>
+							        <v-card-text>
+							        	<v-text-field label="Title" required v-model="entityServ.title"></v-text-field>
+							        	<v-text-field label="Descripción" required v-model="entityServ.description" multi-line></v-text-field>
+							        	<v-text-field label="URL Imagen" required  v-model="entityServ.url_images"></v-text-field>
+							          	<small>* Campos requeridos</small>
+							        </v-card-text>
+						        </v-flex>
+						        <v-flex sm4>
+							        <v-card-text>
+							        	<v-select
+							              v-bind:items="rubros"
+							              v-model="entityServ.type_service_id"
+							              label="Rubro"
+							              single-line
+							              bottom
+							            ></v-select>
+							        	<v-select
+							              v-bind:items="places"
+							              item-text="name"
+							              item-value="id"
+							              v-model="entityServ.place_id"
+							              label="Seleccionar Lugar Turístico"
+							              single-line
+							              bottom
+							            ></v-select>
+							            <v-select
+							              v-bind:items="suppliers"
+							              item-text="business_name"
+							              item-value="id"
+							              v-model="entityServ.supplier_id"
+							              label="Seleccionar Proveedor"
+							              single-line
+							              bottom
+							            ></v-select>
+							        </v-card-text>
+						        </v-flex>
+					       	   </v-layout>
+					      </v-card>
+					    </v-dialog>
+					  </v-layout>
+					</template>
+					<div class="mt-3">
+					    <v-data-table
+					      v-bind:headers="headersServicesDeProv"
+					      v-bind:items="servicesDeProv"
+					      v-bind:search="search"
+					      v-bind:pagination.sync="pagination"
+					      hide-actions
+					      class="elevation-1"
+					    >
+					      <template slot="headerCell" scope="props">
+					        <span v-tooltip:bottom="{ 'html': props.header.text }">
+					          {{ props.header.text }}
+					        </span>
+					      </template>
+					      <template slot="items" scope="props">
+					        <td class="text-xs-center">{{props.item.title}}</td>
+					        <td class="text-xs-center">{{props.item.description}}</td>
+					        <td class="text-xs-center">{{props.item.type_service}}</td>
+					        <td class="text-xs-center">{{props.item.place}}</td>
+					        <td class="text-xs-center">{{props.item.business_name}}</td>
+					        <td class="text-xs-center">
+					        <v-btn primary fab small dark><v-icon>delete</v-icon></v-btn></td>
+					      </template>
+					    </v-data-table>
+					    <div class="text-xs-center pt-2">
+					      <v-pagination v-model="pagination.page" :length="Math.ceil(this.services.length / pagination.rowsPerPage)"></v-pagination>
+					    </div>
+					  </div>
+				</template>
+				
+				
 
-    <div id="app">
-          <!-- Dropdown Structure -->
-            <ul id="dropdown1" class="dropdown-content">
-              <li><a href="#!">Perfil</a></li>
-              <li class="divider"></li>
-              <li><a href="login.html">Cerrar Sesión</a></li>
-            </ul>
-          <nav class="nav-extended">
-            <div class="nav-wrapper">
-              <a href="#" class="brand-logo" style="margin-left: 20px;">Descubre Perú</a>
-              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
-                 <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Bienvenido Operador<i class="material-icons right">account_circle</i><i class="material-icons right">arrow_drop_down</i></a></li>
-              </ul>
-              <ul class="side-nav" id="mobile-demo">
-                    
-              </ul>
-            </div>
-            <div class="nav-content">
-              <ul class="tabs tabs-transparent">
-                <li class="tab"><a href="#test1" class="active">Ventas</a></li>
-              </ul>
-            </div>
-          </nav>
+				<template v-if="viewItems == 6">
+					<div class="text-xs-center" style="padding-top: 10px;"><b>PAQUETES COMPRADOS</b></div>
+					<div class="mt-3">
+					    <v-data-table
+					      v-bind:headers="headersShoppings"
+					      v-bind:items="shoppings"
+					      v-bind:search="search"
+					      v-bind:pagination.sync="pagination"
+					      hide-actions
+					      class="elevation-1"
+					    >
+					      <template slot="headerCell" scope="props">
+					        <span v-tooltip:bottom="{ 'html': props.header.text }">
+					          {{ props.header.text }}
+					        </span>
+					      </template>
+					      <template slot="items" scope="props">
+					        <td class="text-xs-center">{{props.item.tourist_name}} {{props.item.tourist_lastname}}</td>
+					        <td class="text-xs-center">{{props.item.package_tour_title}}</td>
+					        <td class="text-xs-center">{{props.item.currency_date}}</td>
+					        <td class="text-xs-center">{{props.item.number_card}}</td>
+					        <td class="text-xs-center">{{props.item.date_venc}}</td>
+					      </template>
+					    </v-data-table>
+					    <div class="text-xs-center pt-2">
+					      <v-pagination v-model="pagination.page" :length="Math.ceil(this.shoppings.length / pagination.rowsPerPage)"></v-pagination>
+					    </div>
+					  </div>
+				</template>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </main>
+  </v-app>
+</template>
+  </div>
 
-
-          <!-- Servicios --> 
-
-          <div id="test2" class="col s12">
-              <div class="container">
-                <div class="row">
-                    <section class="footerTabs">
-
-                        <!-- Modal crear servicio -->
-
-                        <div id="modal3" class="modal">
-                            <div class="modal-content">
-                              <h5 style="text-align: center;">Registrar Servicio</h5>
-                              <form class="col l12">
-                                <div class="row">
-                                    <div class="col l1"></div>
-                                    <div class="input-field col l5">
-                                      <i class="material-icons prefix">account_circle</i>
-                                      <input id="nombre" type="text" class="validate" v-model="entityServ.title">
-                                      <label for="nombre">Nombre</label>
-                                    </div>
-                                    <div class="input-field col l5">
-                                      <input id="tipo" type="text" class="validate" v-model="entityServ.type_service_id">
-                                      <label for="tipo">Tipo</label>
-                                    </div>
-                                    <div class="col l1"></div>
-                                </div>	
-                                <div class="row">
-                                    <div class="col l1"></div>
-                                    <div class="input-field col l10">
-                                      <input id="description" type="text" class="validate" v-model="entityServ.description">
-                                      <label for="description">Descripción</label>
-                                    </div>
-                                    <div class="col l1"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col l1" ></div>
-                                    <div class="input-field col l5">
-                                        <select v-model="entityServ.place_id">
-                                          <option value=""  selected>Lugar Turístico</option>
-                                          <option v-for="place in places" v-bind:value="place.id">{{place.name}}</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-field col l5">
-                                        <select v-model="entityServ.supplier_id">
-                                          <option value=""  selected>Proveedor</option>
-                                          <option v-for="proveedor in proveedors" v-bind:value="proveedor.id">{{proveedor.bussines_name}}</option>
-                                        </select>
-                                      </div>
-                                    <div class="col l1"></div>
-                                </div>
-                              </form>
-                              
-                            </div>
-                            <div class="modal-footer">
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
-                              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" v-on:click="addServicio" >Guardar</a>
-                            </div>
-                        </div>
-                        
-                       
-                <div class="row">
-                    <article class="main col-lg-12" >
-                        <div class="col-lg-12">
-                            <label class="idser col l1" style="text-decoration: #000;">ID</label>
-                            <label class="name col l2" style="text-decoration: #000;">Nombre</label>
-                            <label class="tipo col l1" style="text-decoration: #000;">Tipo</label>
-                            <label class="des col l3" style="text-decoration: #000;">Descripción</label>
-                            <label class="place col l2" style="text-decoration: #000;">Lugar Turístico</label>
-                            <label class="prov col l2" style="text-decoration: #000;">Proveedor</label>
-                        </div>
-
-                        <div class="line-view"></div>
-
-                        <div class="row item" v-for="service in services">
-
-                            <label class="idser col l1" style="text-decoration: #000;">{{service.id}}</label>
-                            <label class="name col l2" style="text-decoration: #000;">{{service.title}}</label>
-                            <label class="tipo col l1" style="text-decoration: #000;">{{service.type_service_id}}</label>
-                            <label class="des col l3" style="text-decoration: #000;">{{service.description}}</label>
-                            <label class="place col l2" style="text-decoration: #000;">Lugar Turístico</label>
-                            <label class="prov col l2" style="text-decoration: #000;">Proveedor</label>
-                            <a class="waves-effect waves-light  btn-delete" href="#modalActuaServ" ><i class="material-icons left">create</i></a> 
-                            <a class="waves-effect waves-light  btn-delete" v-on:click="RemoveServicio(service)" ><i class="material-icons left">delete</i></a> 
-                
-                        </div>
-                    </article>
-                </div>
-              </div>
-
-          </div>
-
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.1/vue-resource.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
-        <script src="js/scripts.js"></script>
-
-        <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-
-      <script type="text/javascript">
-           $(".button-collapse").sideNav();
-           $(document).ready(function(){
-            $('.modal').modal({
-                 dismissible: false,
-                 startingTop: '4%', // Starting top style attribute
-                 endingTop: '10%', 
-            });
-            $('select').material_select();
-           
-          });
-      
-      </script>
-
-    </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.1/vue-resource.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script src="js/app.js"></script>
+ 
+</body>
 </html>

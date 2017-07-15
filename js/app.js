@@ -11,6 +11,7 @@ const paquetes_url = BASE_URL + 'list_package.php';
 const credit_card_url = BASE_URL + 'list_credit_card.php';
 const provEsperando_url = BASE_URL + 'list_suppliers_wait.php';
 const assigns_url = BASE_URL + 'list_service_package_detail.php';
+const serviciosDeProv_url = BASE_URL + 'list_services_prov.php';
 
 //patch
 const approve_supplier = BASE_URL + 'approved_supplier.php';
@@ -38,6 +39,7 @@ new Vue({
     places: [],
     users: [],
     services: [],
+    servicesDeProv: [],
     packages: [],
     shoppings:[],
     assigns: [],
@@ -97,6 +99,16 @@ new Vue({
       {text: 'Lugar Turístico', value: 'placeservice', align: 'center'},
       {text: 'Proveedor', value: 'provservice', align: 'center'},
     ],
+    
+    
+    headersServicesDeProv:[
+      {text: 'Servicio', value: 'title', align: 'center'},
+      {text: 'Descripción', value: 'description', align: 'center'},
+      {text: 'Tipo Servicio', value: 'type_service_id', align: 'center'},
+      {text: 'Lugar Turístico', value: 'placeservice', align: 'center'},
+      {text: 'Proveedor', value: 'provservice', align: 'center'},
+    ],
+    
     headersAssign: [
       {text: 'Descripción', value: 'descp', align: 'center'},
       {text: 'Costo S/.', value: 'costo', align: 'center'},
@@ -150,6 +162,20 @@ new Vue({
         message:'',
         help:''
     },
+    
+    entityServDeProv: {
+        id:'',
+        title: '',
+        description: '',
+        url_images:'',
+        type_service_id: '',
+        place_id: '',
+        supplier_id: '',
+        active:'1',
+        message:'',
+        help:''
+    },
+    
     entityPack: {
         title: '',
         description: '',
@@ -353,6 +379,12 @@ function mounted() {
 
   this.$http.get(credit_card_url).then( response => {
     this.shoppings = response.body.data;
+  }).catch( error => {
+    console.log(error);
+  });
+  
+  this.$http.get(serviciosDeProv_url).then( response => {
+    this.servicesDeProv = response.body.data;
   }).catch( error => {
     console.log(error);
   });

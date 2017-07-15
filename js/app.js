@@ -342,7 +342,7 @@ new Vue({
         console.log(p);
         this.selectObj = p;
         this.cassign = true;
-        this.$http.get(assigns_url, {id : this.selectObj.id}).then( response => {
+        this.$http.post(assigns_url, {id : this.selectObj.id}).then( response => {
           this.assigns = response.body.data;
         }).catch( error => {
           console.log(error);
